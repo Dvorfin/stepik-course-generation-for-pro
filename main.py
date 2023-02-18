@@ -1307,8 +1307,89 @@ from datetime import datetime
 #     return res
 
 
+# Популярные домены
+
+# import csv
+#
+# with open('data.csv', 'r', encoding='UTF-8') as data_csv, open('domain_usage.csv', 'w', encoding='UTF', newline='') as write_data:
+#     rows = list(csv.reader(data_csv))
+#     data = {}
+#     for row in rows[1:]:
+#         domain = row[-1][row[-1].find('@') + 1:]
+#         data[domain] = data.get(domain, 0) + 1
+#
+#     data = list(data.items())
+#     data = sorted(data, key=lambda item: (int(item[1]), item[0]))
+#
+#     writer = csv.writer(write_data)
+#     writer.writerow(['domain', 'count'])
+#     writer.writerows(data)
+
+
+# Wi-Fi Москвы
+
+# import csv
+#
+# with open('wifi.csv', 'r', encoding='UTF-8') as data_csv:
+#     rows = list(csv.reader(data_csv, delimiter=';'))
+#     res = {}
+#     for row in rows[1:]:
+#         _, district, _, number = row
+#         res[district] = res.get(district, 0) + int(number)
+#
+#     res = sorted(res.items(), key=lambda item: (-item[1], item[0]))
+#
+# for district, count in res:
+#     print(f'{district}: {count}')
+
+
+# Последний день на Титанике
+
+# import csv
+#
+# with open('titanic.csv', 'r', encoding='UTF-8') as data_csv:
+#     rows = list(csv.reader(data_csv, delimiter=';'))
+#
+#     men = []
+#     women = []
+#
+#     for row in rows[1:]:
+#         survived, name, sex, age = row
+#         if int(survived):
+#             if float(age) < 18.0:
+#                 if sex == 'male':
+#                     men.append(name)
+#                 else:
+#                     women.append(name)
+#
+#     print(*(men + women), sep='\n')
 
 
 
+# Лог-файл
 
+# import csv
+# from datetime import datetime
+#
+# with open('name_log.csv', 'r', encoding='UTF-8') as data_csv, \
+#         open('new_name_log.csv', 'w', encoding='UTF-8', newline='') as write_csv_data:
+#
+#     rows = list(csv.reader(data_csv, delimiter=','))
+#     del rows[0]
+#
+#     res = {}
+#
+#     for row in rows:
+#         username, email, dtime = row
+#         res[email] = res.get(email, []) + [[username, datetime.strptime(dtime, '%d/%m/%Y %H:%M')]]
+#
+#     for k, v in res.items():
+#         res[k] = max(res[k], key=lambda item: item[1])
+#
+#     res = dict(sorted(res.items(), key=lambda item: item[0]))
+#
+#     writer = csv.writer(write_csv_data)
+#     writer.writerow(['username', 'email', 'dtime'])
+#     for k, v in res.items():
+#         writer.writerow([v[0], k, datetime.strftime(v[1], '%d/%m/%Y %H:%M')])
 
