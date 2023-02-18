@@ -1240,3 +1240,75 @@ from datetime import datetime
 #     print('Геометрическая прогрессия')
 # else:
 #     print('Не прогрессия')
+
+
+# Тема урока: работа с csv файлами
+
+# Скидки
+
+# import csv
+#
+# with open('sales.csv', 'r',encoding='UTF-8') as csv_data:
+#     rows = csv.DictReader(csv_data, delimiter=';')
+#     for row in rows:
+#         if int(row['old_price']) > int(row['new_price']):
+#             print(row['name'])
+
+
+# Средняя зарплата
+
+# import csv
+#
+# with open('salary_data.csv', 'r', encoding='UTF-8') as csv_data:
+#     rows = list(csv.reader(csv_data, delimiter=';'))
+#     res = {}
+#     names = []
+#     del rows[0]
+#     for company_name, salary in rows:
+#         res[company_name] = res.get(company_name, 0) + int(salary)
+#         names.append(company_name)
+#
+#     for k, v in res.items():
+#         res[k] = v // names.count(k)
+#
+#     print(res)
+#
+# res = dict(sorted(res.items(), key=lambda item: (int(item[1]), item[0])))
+#
+# print(*res, sep='\n')
+
+
+# Сортировка по столбцу
+
+# import csv
+#
+# with open('deniro.csv', 'r', encoding='UTF-8') as csv_data:
+#     rows = list(csv.reader(csv_data))
+#     col = int(input()) - 1
+#
+#     rows = sorted(rows, key=lambda item: (int(item[col]) if item[col].isdigit() else item[col]))
+#
+# print(*[','.join(row) for row in rows], sep='\n')
+
+
+# Функция csv_columns()
+
+# import csv
+#
+# def csv_columns(filename):
+#     res = {}
+#     with open(filename, 'r', encoding='UTF-8') as csv_data:
+#         rows = csv.DictReader(csv_data)
+#         for row in rows:
+#             print(row)
+#             for k, v in row.items():
+#                 res[k] = res.get(k, []) + [v]
+#
+#     return res
+
+
+
+
+
+
+
