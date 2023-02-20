@@ -347,12 +347,9 @@
 #         print(f'Summary: {size}', end='\n\n')
 
 
-
-
 # Тема урока: типы данных date и time
-
+import csv
 from datetime import date, time
-
 
 # def week_converter(num):
 #     w = {0: 'понедельник', 1: 'вторник', 2: 'среда', 3: 'четверг', 4: 'пятница', 5: 'суббота', 6: 'всокресенье'}
@@ -795,7 +792,6 @@ from datetime import datetime
 #     print(datetime.strftime(tmp[0][0], '%d.%m.%Y'), tmp[0][1])
 
 
-
 # Сотрудники организации 🙂
 
 
@@ -825,7 +821,6 @@ from datetime import datetime
 # if flag == False:
 #     for d in tmp:
 #         print(d[0].strftime(pattern))
-
 
 
 # Сотрудники организации 😔
@@ -995,7 +990,7 @@ from datetime import datetime
 
 # locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
-#calendar.setfirstweekday(calendar.TUESDAY)
+# calendar.setfirstweekday(calendar.TUESDAY)
 
 
 # Високосный год
@@ -1213,8 +1208,6 @@ from datetime import datetime
 #     print('MIX')
 
 
-
-
 # Гуру прогрессий
 
 # import sys
@@ -1365,7 +1358,6 @@ from datetime import datetime
 #     print(*(men + women), sep='\n')
 
 
-
 # Лог-файл
 
 # import csv
@@ -1393,3 +1385,97 @@ from datetime import datetime
 #     for k, v in res.items():
 #         writer.writerow([v[0], k, datetime.strftime(v[1], '%d/%m/%Y %H:%M')])
 
+
+# Проще, чем кажется 🌶️
+
+import csv
+
+# def condense_csv(filename, id_name):
+#
+#     with open(filename, 'r', encoding='UTF-8') as data_csv:
+#         rows = list(csv.reader(data_csv, delimiter=','))
+#
+#         cnt = 1
+#         for i in range(1, len(rows)):
+#             if rows[i - 1][0] == rows[i][0]:
+#                 cnt += 1
+#             else:
+#                 break
+#
+#         data = []
+#         print(rows)
+#         for i in range(0, len(rows), cnt):
+#             t = rows[i: i + cnt]
+#             r = list(zip(*t))
+#             print(r)
+#             data.append(dict([(id_name, r[0][0])] + list(zip(r[1], r[2]))))
+#
+#     with open('condensed.csv', 'w', encoding='UTF-8', newline='') as outcome_csv:
+#         writer = csv.DictWriter(outcome_csv, fieldnames=list(data[0].keys()),  delimiter=',')
+#         writer.writeheader()
+#         writer.writerows(data)
+
+
+# Возрастание классов 🌶️
+
+# import csv
+#
+# with open('student_counts.csv', 'r', encoding="UTF-8") as data_csv:
+#     rows = csv.DictReader(data_csv, delimiter=',')
+#     temp = rows.fieldnames[1:]
+#     temp = [rows.fieldnames[0]] + sorted(temp, key=lambda item:  (int(item.split('-')[0]), item.split('-')[1]))
+#     #print(sorted(temp, key=lambda item:  (int(item.split('-')[0]), item.split('-')[1])))
+#     #print(*rows, sep='\n')
+#     print(temp)
+#
+#     with open('sorted_student_counts.csv', 'w', encoding='UTF-8', newline='') as outcome_csv:
+#         writer = csv.DictWriter(outcome_csv, fieldnames=temp)
+#         writer.writeheader()
+#         writer.writerows(rows)
+
+
+# Голодный студент 🌶️
+
+# import csv
+#
+# with open('prices.csv', 'r', encoding="UTF-8") as data_csv:
+#     reader = csv.DictReader(data_csv, delimiter=';')
+#     data = []
+#     for row in reader:
+#         shop = row.pop('Магазин')
+#         goods, price = min(row.items(), key=lambda item: int(item[1]))
+#         data.append((int(price), goods, shop))
+#
+# min_price = min(data)
+# print(min_price)
+# print(min_price[1], min_price[2])
+
+import csv
+
+# with open('prices.csv', 'r', encoding="UTF-8") as data_csv:
+#     flag = True
+#     header = []
+#
+#     products = {}
+#
+#     for store, *prices in csv.reader(data_csv, delimiter=';'):
+#         if flag:
+#             header = [store] + prices
+#             flag = False
+#             continue
+#         tmp = zip(header[1:], prices)
+#         products[store] = sorted(tmp, key=lambda item: (int(item[1]), item[0]))[0]
+#
+#     res = sorted(products.items(), key=lambda item: (int(item[1][1]), item[1][0], item[0] ))
+#     print(f'{res[0][1][0]}: {res[0][0]}')
+
+
+# Тема урока: работа с json файлами
+
+import json
+
+colors = ['black', 'white']
+
+colors_json = json.dumps(colors, indent='-> ')
+
+print(colors_json)
