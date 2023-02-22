@@ -1472,10 +1472,298 @@ import csv
 
 # Тема урока: работа с json файлами
 
+
+
+# Функция is_correct_json()
+
+# import json
+#
+#
+# def is_correct_json(string):
+#     try:
+#         d = json.loads(string)
+#         print(type(d))
+#         return True
+#
+#     except json.JSONDecodeError:
+#         return False
+#
+# data = '{"name": "Barsik", "age": 7, "meal": "Wiskas"}'
+#
+# print(is_correct_json(data))
+# print(is_correct_json('number = 17'))
+
+
+# Элементы JSON
+
+# import sys
+# import json
+#
+# json_string = sys.stdin.read()
+# data = json.loads(json_string)
+#
+# for k, v in data.items():
+#     if type(v) == list:
+#         v = list(map(str, v))
+#         print(f'{k}: {", ".join(v)}')
+#     else:
+#         print(f'{k}: {v}')
+
+
+# Разные типы
+
+# import json
+#
+#
+# with open('data.json', 'r', encoding='UTF-8') as json_data:
+#     data = json.load(json_data)
+#     res = []
+#
+#     opers = {bool: lambda x: not x,
+#              int: lambda x: x + 1,
+#              str: lambda x: x + '!',
+#              list: lambda x: x * 2,
+#              dict: lambda x: x | {'newkey': None}}
+#
+#     for item in data:
+#         if item is None:
+#             continue
+#         item = opers[type(item)](item)
+#         res.append(item)
+#
+# with open('updated_data.json',  'w', encoding='UTF-8') as json_outcome_data:
+#     json.dump(res, json_outcome_data, indent=3)
+
+
+# Объединение объектов
+
+# import json
+#
+#
+# with open('data1.json', 'r', encoding='UTF-8') as f1_json, open('data2.json', 'r', encoding='UTF-8') as f2_json:
+#     data1 = json.load(f1_json)
+#     data2 = json.load(f2_json)
+#     res = data1 | data2
+#
+# with open('data_merge.json', 'w', encoding='UTF-8') as outcome_json:
+#     json.dump(res, outcome_json, indent=3)
+
+
+# Восстановление недостающих ключей
+
+# import json
+#
+#
+# with open('people.json', 'r', encoding='UTF-8') as json_data:
+#     data = json.load(json_data)
+#     maximum_data = list(max(data, key=len).keys())
+#
+#     dict_for_merge = dict(zip(maximum_data, [None for _ in range(len(maximum_data))]))
+#     print(dict_for_merge)
+#
+#     data = [dict_for_merge | item for item in data]
+#     print(data)
+#
+# with open('updated_people.json', 'w', encoding='UTF-8') as json_data:
+#     json.dump(data, json_data, indent=3)
+
+
+# Я исповедую Python, а ты?
+
+# import json
+#
+#
+# with open('countries.json', 'r', encoding='UTF-8') as json_data:
+#     data = json.load(json_data)
+#     res = {}
+#
+#     for item in data:
+#         religion = item['religion']
+#         country = item['country']
+#         res[religion] = res.get(religion, []) + [country]
+#
+#     print(res)
+#
+# with open('religion.json', 'w', encoding='UTF-8') as json_data:
+#     json.dump(res, json_data, indent=3)
+
+
+# Спортивные площадки
+
+import csv
 import json
+#
+# with open('playgrounds.csv', 'r', encoding='UTF-8') as csv_data, \
+#         open('addresses.json', 'w', encoding='UTF-8') as json_data:
+#
+#     rows = list(csv.reader(csv_data, delimiter=';'))
+#     header = rows[0]
+#     print(rows)
+#
+#     json_dict = {}
+#
+#     for row in rows[1:]:
+#         _, AdmArea, District, Address = row
+#         json_dict[AdmArea] = json_dict.get(AdmArea, {District: []})
+#         json_dict[AdmArea][District] = json_dict[AdmArea].get(District, []) + [Address]
+#
+#     print(json_dict)
+#
+#     json.dump(json_dict, json_data, indent=3, ensure_ascii=False)
 
-colors = ['black', 'white']
 
-colors_json = json.dumps(colors, indent='-> ')
+# with open('playgrounds.csv', encoding='utf8') as fi, open('addresses.json', 'w', encoding='utf8') as fo:
+#     _, *playgrounds = csv.reader(fi, delimiter=';')
+#     d = {}
+#     r = [d.setdefault(i[1], {}).setdefault(i[2], []).append(i[3]) for i in playgrounds]
+#     print(r)
+#     json.dump(d, fo, indent=3, ensure_ascii=False)
 
-print(colors_json)
+
+# Студенты курса
+
+# import csv
+# import json
+# import time
+#
+# start = time.time_ns()
+#
+# with open('students.json', 'r', encoding='UTF-8') as json_data, \
+#         open('data.csv', 'w', encoding='UTF-8', newline='') as c sv_data:
+#
+#     data = json.load(json_data)
+#
+#     res = list(filter(lambda x: x['age'] >= 18 and x['progress'] >= 75, data))
+#     res = list(map(lambda x: {'name': x['name'], 'phone': x['phone']}, res))
+#     res = list(sorted(res, key=lambda x: x['name']))
+#
+#     writer = csv.DictWriter(csv_data, delimiter=',', fieldnames=['name', 'phone'])
+#     writer.writeheader()
+#     writer.writerows(res)
+#
+#
+# with open('students.json') as file:
+#     students = json.load(file)
+#     result = []
+#     for student in students:
+#         if student['age'] >= 18 and student['progress'] >= 75:
+#             result.append([student['name'], student['phone']])
+#     result.sort()
+#
+# with open('data.csv', 'w', encoding='utf-8', newline='') as file:
+#     writer = csv.writer(file)
+#     writer.writerow(['name', 'phone'])
+#     writer.writerows(result)
+#
+# stop = time.time_ns()
+#
+# print(stop - start)
+
+
+# Бассейны
+
+# import json
+# from datetime import time, timedelta
+#
+#
+# def check_time(t1, t2):
+#     t1 = datetime.strptime(t1, '%H:%M').time()
+#     t2 = datetime.strptime(t2, '%H:%M').time()
+#     return [False, True][time(hour=10) >= t1 and time(hour=12) <= t2]
+#
+#
+# with open('pools.json', 'r', encoding='UTF-8') as json_data:
+#     data = json.load(json_data)
+#
+#     res = list(filter(lambda x: check_time(*x['WorkingHoursSummer']['Понедельник'].split('-')), data))
+#     res = sorted(res, key=lambda x: (x['DimensionsSummer']['Length'], x['DimensionsSummer']['Width']))
+#
+#     print(f'{res[-1]["DimensionsSummer"]["Length"]}x{res[-1]["DimensionsSummer"]["Width"]}\n'
+#           f'{res[-1]["Address"]}')
+
+
+# Результаты экзамена 🌶️
+
+# import csv
+# import json
+# from datetime import datetime
+#
+#
+# with open('exam_results.csv', 'r', encoding='UTF-8') as csv_data, \
+#         open('best_scores.json', 'w', encoding='UTF-8') as json_data:
+#
+#     email_dict = {}
+#     rows = list(csv.reader(csv_data))
+#
+#     for row in rows[1:]:
+#         name, surname, score, date_and_time, email = row
+#         row = [name, surname, int(score), date_and_time, email]
+#         email_dict[email] = email_dict.setdefault(email, []) + [row]
+#         email_dict[email] = [max(email_dict[email], key=lambda x: (x[2], datetime.strptime(x[3], "%Y-%m-%d %H:%M:%S")))]
+#
+#     email_dict = dict(sorted(email_dict.items()))
+#
+#     print(email_dict)
+#
+#     keys = ['name', 'surname', 'best_score', 'date_and_time', 'email']
+#     res = list(dict(zip(keys, *v)) for v in email_dict.values())
+#
+#     json.dump(res, json_data, indent=3)
+
+
+# Общественное питание 😥
+
+# import json
+# import time
+#
+# start = time.time_ns()
+#
+#
+# with open('food_services.json', 'r', encoding='UTF-8') as json_data:
+#
+#     districts = {}
+#     biggest_net = {}
+#
+#     data = json.load(json_data)
+#
+#     for item in data:
+#         district = item['District']
+#         districts[district] = districts.setdefault(district, 0) + 1
+#
+#         name = item["OperatingCompany"]
+#         if name != '':
+#             biggest_net[name] = biggest_net.setdefault(name, 0) + 1
+#
+#     maximum = max(districts.items(), key=lambda x: x[1])
+#     print(f'{maximum[0]}: {maximum[1]}')
+#
+#     maximum = max(biggest_net.items(), key=lambda x: x[1])
+#     print(f'{maximum[0]}: {maximum[1]}')
+#
+# stop = time.time_ns()
+#
+# print(stop - start / 1000000000)
+
+
+
+# Общественное питание 😰
+
+
+with open('food_services.json', 'r', encoding='UTF-8') as json_data:
+
+    districts = {}
+    biggest_net = {}
+
+    data = json.load(json_data)
+
+    for item in data:
+        district = item['District']
+        districts[district] = districts.setdefault(district, 0) + 1
+
+        name = item["OperatingCompany"]
+        if name != '':
+            biggest_net[name] = biggest_net.setdefault(name, 0) + 1
+
+    maximum = max(districts.items(), key=lambda x: x[1])
+    print(f'{maximum[0]}: {maximum[1]}')
+#
