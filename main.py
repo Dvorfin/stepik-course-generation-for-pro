@@ -1590,8 +1590,8 @@ import csv
 
 # Спортивные площадки
 
-import csv
-import json
+# import csv
+# import json
 #
 # with open('playgrounds.csv', 'r', encoding='UTF-8') as csv_data, \
 #         open('addresses.json', 'w', encoding='UTF-8') as json_data:
@@ -1748,22 +1748,185 @@ import json
 
 # Общественное питание 😰
 
-
-with open('food_services.json', 'r', encoding='UTF-8') as json_data:
-
-    districts = {}
-    biggest_net = {}
-
-    data = json.load(json_data)
-
-    for item in data:
-        district = item['District']
-        districts[district] = districts.setdefault(district, 0) + 1
-
-        name = item["OperatingCompany"]
-        if name != '':
-            biggest_net[name] = biggest_net.setdefault(name, 0) + 1
-
-    maximum = max(districts.items(), key=lambda x: x[1])
-    print(f'{maximum[0]}: {maximum[1]}')
+# import json
 #
+#
+# with open('food_services.json', 'r', encoding='UTF-8') as json_data:
+#     type_object_dict = {}
+#     data = json.load(json_data)
+#
+#     for item in data:
+#         type = item['TypeObject']
+#         name = item['Name']
+#         seats = int(item['SeatsCount'])
+#
+#         if type_object_dict.get(type, 0) == 0:
+#             type_object_dict.setdefault(type, [name, int(seats)])
+#         else:
+#             if type_object_dict[type][1] < seats:
+#                 type_object_dict[type] = [name, seats]
+#
+#     type_object_dict = dict(sorted(type_object_dict.items()))
+#
+#
+# for k, v in type_object_dict.items():
+#     print(f'{k}: {v[0]}, {v[1]}')
+
+
+# Тема урока: работа с zip файлами
+
+
+# Количество файлов
+
+
+# from zipfile import ZipFile
+#
+#
+# with ZipFile('test.zip') as zip_file:
+#     info = zip_file.infolist()
+#     count = 0
+#     for item in info:
+#         if not item.is_dir():
+#             count += 1
+#
+#     print(count)
+
+
+# Объем файлов
+
+# from zipfile import ZipFile
+#
+#
+# with ZipFile('test.zip') as zip_file:
+#     info = zip_file.infolist()
+#     size_before_zip = sum(item.file_size for item in info)
+#     size_after_zip = sum(item.compress_size for item in info)
+#
+#     print(f'Объем исходных файлов: {size_before_zip} байт(а)')
+#     print(f'Объем сжатых файлов: {size_after_zip} байт(а)')
+
+
+# Наилучший показатель
+# fontlist-v330.json
+
+# from zipfile import ZipFile
+#
+# with ZipFile('workbook.zip') as zip_file:
+#     info = zip_file.infolist()
+#
+#     k = 100
+#     res = ''
+#     for item in info:
+#         if item.compress_size and item.file_size and ((item.compress_size / item.file_size) * 100 < k):
+#             k = (item.compress_size / item.file_size) * 100
+#             res = item.filename
+#     print(res[res.find('/') + 1:])
+
+
+# Избранные
+
+
+# from zipfile import ZipFile
+# from datetime import datetime
+#
+# with ZipFile('workbook.zip') as zip_file:
+#     t = datetime(year=2021, month=11, day=30, hour=14, minute=22)
+#     files = [file.filename.split('/')[-1] for file in zip_file.infolist() if not file.is_dir() and datetime(*file.date_time) > t]
+#
+#     print(*sorted(files), sep='\n')
+
+
+# Форматированный вывод
+
+# from zipfile import ZipFile
+# from datetime import datetime
+#
+# with ZipFile('workbook.zip') as zip_file:
+#     f = lambda item: (item.filename.split('/')[-1], item.file_size, item.compress_size, datetime(*item.date_time))
+#     files_info = [f(file) for file in zip_file.infolist() if not file.is_dir()]
+#
+#     files_info = sorted(files_info)
+#
+#     for file in files_info:
+#         print(file[0])
+#         print(f'  Дата модификации файла: {file[-1]}')
+#         print(f'  Объем исходного файла: {file[1]} байт(а)')
+#         print(f'  Объем сжатого файла: {file[2]} байт(а)\n')
+
+
+# Функция extract_this()
+
+# from zipfile import ZipFile
+#
+#
+# def extract_this(zip_name, *args):
+#
+#     with ZipFile(zip_name) as zip_file:
+#         if args:
+#             list(map(lambda x: zip_file.extract(x), args))
+#         else:
+#             zip_file.extractall()
+
+
+# Шахматы были лучше 🌶️
+
+import json
+from zipfile import ZipFile
+
+
+def is_correct_json(string):
+    try:
+        json.loads(string)
+        return True
+    #except json.JSONDecodeError:
+    except:
+        return False
+
+
+
+def extract_this(zip_name, *args):
+    with ZipFile(zip_name) as zip_file:
+        if args:
+            list(map(lambda x: zip_file.extract(x), args))
+        else:
+            zip_file.extractall()
+
+
+def open_json(json_name):
+    with open(json_name, 'r', encoding='UTF-8') as json_data:
+
+        #d = json.load(json_data)
+        #data = json.load(json_data)
+        # print(data)
+        #print(json_data.read())
+        t = json_data.read()
+
+        if is_correct_json(t):
+            data = json.load(json_data)
+            print('huo')
+
+
+
+# with ZipFile('data.zip') as zip_file:
+#     #f = lambda item: (item.filename.split('/')[-1], item.file_size, item.compress_size, datetime(*item.date_time))
+#     files_info = [file.filename for file in zip_file.infolist() if not file.is_dir() and file.filename[-5:] == '.json']
+#
+# extract_this('data.zip', *files_info)
+
+print(open_json('player30.json'))
+
+t = """{
+   "first_name": "Victor",
+   "last_name": "Moses",
+   "team": "Chelsea",
+   "position": "Midfielder 2"
+}"""
+print(is_correct_json(t))
+# Alex Iwobi
+# Alexis Sanchez
+# Hector Bellerin
+# Laurent Koscielny
+# Mesut Ozil
+# Olivier Giroud
+# Petr Cech
+# Theo Walcott
