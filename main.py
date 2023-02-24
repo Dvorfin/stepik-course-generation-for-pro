@@ -1870,63 +1870,101 @@ import csv
 
 # Шахматы были лучше 🌶️
 
-import json
-from zipfile import ZipFile
-
-
-def is_correct_json(string):
-    try:
-        json.loads(string)
-        return True
-    #except json.JSONDecodeError:
-    except:
-        return False
-
-
-
-def extract_this(zip_name, *args):
-    with ZipFile(zip_name) as zip_file:
-        if args:
-            list(map(lambda x: zip_file.extract(x), args))
-        else:
-            zip_file.extractall()
-
-
-def open_json(json_name):
-    with open(json_name, 'r', encoding='UTF-8') as json_data:
-
-        #d = json.load(json_data)
-        #data = json.load(json_data)
-        # print(data)
-        #print(json_data.read())
-        t = json_data.read()
-
-        if is_correct_json(t):
-            data = json.load(json_data)
-            print('huo')
-
-
-
+# import json
+# from zipfile import ZipFile
+#
+#
+# def open_json(json_name):
+#     try:
+#         data = json.loads(json_name)
+#         return True
+#     except json.JSONDecodeError:
+#         return False
+#
+#
 # with ZipFile('data.zip') as zip_file:
-#     #f = lambda item: (item.filename.split('/')[-1], item.file_size, item.compress_size, datetime(*item.date_time))
 #     files_info = [file.filename for file in zip_file.infolist() if not file.is_dir() and file.filename[-5:] == '.json']
 #
-# extract_this('data.zip', *files_info)
+#     res = []
+#
+#     for file_path in files_info:
+#         try:
+#             with zip_file.open(file_path) as file:
+#                 content = file.read().decode('utf-8')
+#         except:
+#             continue
+#
+#         data = open_json(content)
+#         if data:
+#             data = json.loads(content)
+#             if data['team'] == 'Arsenal':
+#                 res.append(data['first_name'] + ' ' + data['last_name'])
+#
+#     res.sort()
+#
+#     print(*res, sep='\n')
 
-print(open_json('player30.json'))
 
-t = """{
-   "first_name": "Victor",
-   "last_name": "Moses",
-   "team": "Chelsea",
-   "position": "Midfielder 2"
-}"""
-print(is_correct_json(t))
-# Alex Iwobi
-# Alexis Sanchez
-# Hector Bellerin
-# Laurent Koscielny
-# Mesut Ozil
-# Olivier Giroud
-# Petr Cech
-# Theo Walcott
+
+# Структура архива 🌶️🌶️
+
+# from zipfile import ZipFile
+#
+#
+# def convert_bytes(size):
+#     """Конвертер байт в большие единицы"""
+#     if size < 1000:
+#         return f'{size} B'
+#     elif 1000 <= size < 1000000:
+#         return f'{round(size / 1024)} KB'
+#     elif 1000000 <= size < 1000000000:
+#         return f'{round(size / 1048576)} MB'
+#     else:
+#         return f'{round(size / 1073741824)} GB'
+#
+#
+# with ZipFile('desktop.zip') as zip_file:
+#     indent = 0
+#     print(zip_file.infolist()[0].filename[:-1])
+#     for d in zip_file.infolist()[1:]:
+#         name = d.filename
+#         size = int(d.file_size)
+#
+#         indent = name.count("/") - 1
+#         if not name.endswith('/'):
+#             indent += 1
+#         if name.endswith('/'):
+#             name = name.split('/')[-2]
+#         else:
+#             name = name.split('/')[-1]
+#
+#         print(f'{"  " * indent}{name} {convert_bytes(size) if size != 0 else ""}')
+
+
+
+# Тема урока: работа с модулем pickle
+
+
+# import pickle
+
+# obj = {'Python': 1991, 'Java': 1995, 'C#': 2002}
+# binary_obj = pickle.dumps(obj)
+#
+# print(binary_obj)
+# print(type(binary_obj))
+
+
+# Одинокая функция
+
+# import pickle
+# import sys
+#
+# pickle_name, *params = [srr.strip() for srr in sys.stdin]
+#
+#
+# with open(pickle_name, 'rb') as file:
+#     func = pickle.load(file)
+#     print(func(*params))
+
+
+# Ты не пройдешь
