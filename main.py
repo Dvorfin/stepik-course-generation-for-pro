@@ -1968,3 +1968,252 @@ import csv
 
 
 # Ты не пройдешь
+
+# import pickle
+#
+#
+# def filter_dump(filename, objects, typename):
+#     with open(filename, 'wb') as file:
+#         pickle.dump([item for item in objects if type(item) == typename], file)
+#
+# filter_dump('numbers.pkl', [1, '2', 3, 4, '5'], int)
+
+
+# Контрольная сумма
+
+# import pickle
+#
+#
+# def check_control_sum(filename, con_sum):
+#     with open(filename, 'rb') as file:
+#         data = pickle.load(file)
+#
+#     if isinstance(data, dict):
+#         keys = data.keys()
+#         keys = list(filter(lambda x: isinstance(x, int), keys))
+#         if len(keys) == 0:
+#             return 0 == con_sum
+#         return sum(keys) == con_sum
+#
+#     elif isinstance(data, list):
+#         data = list(filter(lambda x: isinstance(x, int), data))
+#         if len(data) == 0:
+#             return 0 == con_sum
+#         return max(data) * min(data) == con_sum
+#
+#
+# name = input()
+# control_sum = int(input())
+#
+# if check_control_sum(name, control_sum):
+#     print('Контрольные суммы совпадают')
+# else:
+#     print('Контрольные суммы не совпадают')
+
+
+
+# Я и сам своего рода переводчик
+
+# import string
+#
+# alphabet = list(map(lambda x: x, input()))
+# #print(dict(zip(alphabet, [i for i in range(26)])))
+# alphabet = dict(zip([i for i in range(26)], alphabet))
+#
+# tbl = str.maketrans(alphabet)
+#
+# srr = input().upper()
+# letters = string.ascii_uppercase
+#
+# tbl2 = str.maketrans(dict(zip(letters, [i for i in range(26)])))
+# srr = srr.translate(tbl2)
+#
+# print(srr.translate(tbl))
+
+
+# from collections import namedtuple
+# import pickle
+#
+# Animal = namedtuple('animal', 'name, family, sex, color')
+#
+# with open('data.pkl', 'rb') as file:
+#     data = pickle.load(file)
+#
+#     for item in data:
+#         r = [f'{d[0]}: {d[1]}\n' for d in list((zip(Animal._fields, item)))]
+#         print(*r, sep='')
+
+
+# from collections import namedtuple
+#
+# User = namedtuple('User', ['name', 'surname', 'email', 'plan'])
+#
+# users = [User('Mary', 'Griffin', 'sonnen@yahoo.com', 'Basic'),
+#          User('Brenda', 'Young', 'retoh@outlook.com', 'Silver'),
+#          User('Kathleen', 'Lyons', 'balchen@att.net', 'Gold'),
+#          User('Pamela', 'Hicks', 'corrada@sbcglobal.net', 'Silver'),
+#          User('William', 'Townsend', 'kosact@verizon.net', 'Gold'),
+#          User('Clayton', 'Morris', 'berserk@yahoo.com', 'Silver'),
+#          User('Dorothy', 'Dennis', 'sequin@live.com', 'Gold'),
+#          User('Tyler', 'Walker', 'noahb@comcast.net', 'Basic'),
+#          User('Joseph', 'Moore', 'ylchang@sbcglobal.net', 'Silver'),
+#          User('Kenneth', 'Richardson', 'tbusch@me.com', 'Bronze'),
+#          User('Stephanie', 'Bush', 'neuffer@live.com', 'Gold'),
+#          User('Gregory', 'Hughes', 'juliano@att.net', 'Basic'),
+#          User('Tracy', 'Wallace', 'sblack@me.com', 'Silver'),
+#          User('Russell', 'Smith', 'isaacson@comcast.net', 'Bronze'),
+#          User('Megan', 'Patterson', 'hoangle@outlook.com', 'Basic')]
+#
+#
+#
+# def subscribe(sub):
+#     plans = ['Gold', 'Silver', 'Bronze', 'Basic']
+#     return plans.index(sub)
+#
+#
+# res = sorted(users, key=lambda item: (subscribe(item.plan), item.email))
+#
+# for item in res:
+#     print(item.name, item.surname)
+#     print(f'  Email:{item.email}')
+#     print(f'  Plan:{item.plan}\n')
+
+
+# Вы кто такие? Я вас не звал
+
+# import csv
+# from collections import namedtuple
+# from datetime import time, date
+#
+# Friend = namedtuple('Friend', ['surname', 'name', 'meeting_date', 'meeting_time'])
+#
+# date_pattern, time_pattern = '%d.%m.%Y', '%H:%M'
+#
+#
+# def date_sort(d):
+#     return datetime.strptime(d, date_pattern)
+#
+#
+# def time_sort(t):
+#     return datetime.strptime(t, time_pattern)
+#
+#
+# with open('meetings.csv', 'r', encoding='utf-8') as csv_data:
+#     rows = csv.DictReader(csv_data, delimiter=',')
+#     friends = [Friend(*row.values()) for row in rows]
+#
+#     friends = sorted(friends, key=lambda item: (date_sort(item.meeting_date), time_sort(item.meeting_time)))
+#
+#
+# [print(friend.surname, friend.name) for friend in friends]
+
+
+
+# Тема урока: тип данных defaultdict
+
+
+# from collections import defaultdict
+# info = defaultdict(int)  # создаем словарь со значением по умолчанию 0
+#
+# info['name'] = 'Timur'
+# info['age'] = 29
+# info['job'] = 'Teacher'
+# info['hi'] = 566666
+#
+# print(info['salary'])
+#
+# print(info['ebs'])
+# print(info)
+
+
+# from collections import defaultdict
+#
+# data = [('Books', 1343), ('Books', 1166), ('Merch', 616), ('Courses', 966),
+#         ('Merch', 1145), ('Courses', 1061), ('Books', 848), ('Courses', 964),
+#         ('Tutorials', 832), ('Merch', 642), ('Books', 815), ('Tutorials', 1041),
+#         ('Books', 1218), ('Tutorials', 880), ('Books', 1003), ('Merch', 951),
+#         ('Books', 920), ('Merch', 729), ('Tutorials', 977), ('Books', 656)]
+#
+#
+# data_new = defaultdict(int)
+#
+# for item, price in data:
+#     data_new[item] += price
+#
+# print(*sorted([f'{k}: ${data_new[k]}' for k in data_new]), sep='\n')
+
+
+
+# from collections import defaultdict
+#
+# data = defaultdict(int)
+#
+# for item in staff:
+#     data[item[0]] += 1
+#
+# for k, v in sorted(data.items()):
+#     print(f'{k}: {v}')
+
+
+# from collections import defaultdict
+#
+# staff_broken = [('Developing', 'Miguel Norris'), ('Sales', 'Connie Reid'), ('Sales', 'Joseph Lee'), ('Marketing', 'Carol Peters'), ('Accounting', 'Linda Hudson'), ('Accounting', 'Ann Bell'), ('Marketing', 'Ralph Morgan'), ('Accounting', 'Gloria Higgins'), ('Developing', 'Wilma Woods'), ('Developing', 'Wilma Woods'), ('Marketing', 'Bernice Ramos'), ('Marketing', 'Joyce Lawrence'), ('Accounting', 'Craig Wood'), ('Developing', 'Nicole Watts'), ('Sales', 'Jose Taylor'), ('Accounting', 'Linda Hudson'), ('Accounting', 'Edna Cunningham'), ('Sales', 'Jose Taylor'), ('Marketing', 'Helen Taylor'), ('Accounting', 'Kimberly Reynolds'), ('Marketing', 'Mary King'), ('Sales', 'Joseph Lee'), ('Accounting', 'Gloria Higgins'), ('Marketing', 'Andrew Clark'), ('Accounting', 'John Watts'), ('Accounting', 'Rosemary Garcia'), ('Accounting', 'Steven Diaz'), ('Marketing', 'Mary King'), ('Sales', 'Gladys Taylor'), ('Developing', 'Thomas Porter'), ('Accounting', 'Brenda Davis'), ('Sales', 'Connie Reid'), ('Sales', 'Alicia Mendoza'), ('Marketing', 'Mario Reynolds'), ('Sales', 'John White'), ('Developing', 'Joyce Rivera'), ('Accounting', 'Steven Diaz'), ('Developing', 'Arlene Gibson'), ('Sales', 'Robert Barnes'), ('Sales', 'Charlotte Cox'), ('Accounting', 'Craig Wood'), ('Marketing', 'Carol Peters'), ('Marketing', 'Ralph Morgan'), ('Accounting', 'Kay Scott'), ('Sales', 'Evelyn Martin'), ('Marketing', 'Billy Lloyd'), ('Sales', 'Gladys Taylor'), ('Developing', 'Deborah George'), ('Sales', 'Charlotte Cox'), ('Marketing', 'Sam Davis'), ('Sales', 'John White'), ('Sales', 'Marie Cooper'), ('Marketing', 'John Gonzalez'), ('Sales', 'John Washington'), ('Sales', 'Chester Fernandez'), ('Sales', 'Alicia Mendoza'), ('Sales', 'Katie Warner'), ('Accounting', 'Jane Jackson'), ('Sales', 'Chester Fernandez'), ('Marketing', 'Charles Bailey'), ('Marketing', 'Gail Hill'), ('Accounting', 'Casey Jenkins'), ('Accounting', 'James Wilkins'), ('Accounting', 'Casey Jenkins'), ('Marketing', 'Mario Reynolds'), ('Accounting', 'Aaron Ferguson'), ('Accounting', 'Kimberly Reynolds'), ('Sales', 'Robert Barnes'), ('Accounting', 'Aaron Ferguson'), ('Accounting', 'Jane Jackson'), ('Developing', 'Deborah George'), ('Accounting', 'Michelle Wright'), ('Accounting', 'Dale Houston')]
+#
+# data = defaultdict(set)
+#
+# for item in staff_broken:
+#     data[item[0]].add(item[1])
+#
+# for k, v in sorted(data.items()):
+#     print(f'{k}: ', end='')
+#     print(*sorted(list(v)), sep=', ')
+
+
+# Функция wins()
+
+# from collections import defaultdict
+#
+#
+# def wins(pairs):
+#     data = defaultdict(set)
+#     for pair in pairs:
+#         data[pair[0]].add(pair[1])
+#     return data
+#
+# result = wins([('Артур', 'Дима'), ('Артур', 'Тимур'), ('Артур', 'Анри'), ('Дима', 'Артур')])
+#
+# for winner, losers in sorted(result.items()):
+#     print(winner, '->', *sorted(losers))
+
+
+# Функция flip_dict()
+
+# from collections import defaultdict
+#
+#
+# def flip_dict(dict_of_lists: dict):
+#     data = defaultdict(list)
+#     for k, v in dict_of_lists.items():
+#         [data[key].append(k) for key in v]
+#
+#     return data
+
+
+# Функция best_sender()
+
+# from collections import defaultdict
+#
+#
+# def best_sender(messages: list, senders: list):
+#     data = defaultdict(int)
+#
+#     for msg, snd in zip(messages, senders):
+#         data[snd] += msg.count(' ')
+#
+#     return max(data, key=lambda x: (data[x], x))
+#
+#
+# messages = ['How is Stepik for everyone', 'Stepik is useful for practice']
+# senders = ['Bob', 'Charlie']
+#
+# print(best_sender(messages, senders))
