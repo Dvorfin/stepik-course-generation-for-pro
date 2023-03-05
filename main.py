@@ -2210,6 +2210,7 @@ import csv
 #     for msg, snd in zip(messages, senders):
 #         data[snd] += msg.count(' ')
 #
+#     print(data['Bob'])
 #     return max(data, key=lambda x: (data[x], x))
 #
 #
@@ -2217,3 +2218,61 @@ import csv
 # senders = ['Bob', 'Charlie']
 #
 # print(best_sender(messages, senders))
+
+
+# Тема урока: тип данных OrderedDict
+
+
+
+# from collections import OrderedDict
+#
+# data = OrderedDict({'Name': 'Брусника', 'IsNetObject': 'да', 'OperatingCompany': 'Брусника', 'TypeObject': 'кафе', 'AdmArea': 'Центральный административный округ', 'District': 'район Арбат', 'Address': 'город Москва, переулок Сивцев Вражек, дом 6/2', 'SeatsCount': '10'})
+#
+# for key in list(data):
+#     data.move_to_end(key)
+#
+# print(data)
+
+
+# from collections import OrderedDict
+#
+# data = OrderedDict({'Name': 'Брусника', 'IsNetObject': 'да', 'OperatingCompany': 'Брусника', 'TypeObject': 'кафе', 'AdmArea': 'Центральный административный округ', 'District': 'район Арбат', 'Address': 'город Москва, переулок Сивцев Вражек, дом 6/2', 'SeatsCount': '10'})
+#
+# new_data = OrderedDict()
+#
+# rule = False
+# for _ in range(len(data)):
+#     name, grade = data.popitem(last=rule)
+#     new_data[name] = grade
+#     rule = not rule
+#
+# print(new_data)
+
+
+# from collections import OrderedDict
+#
+# data = OrderedDict({'Law & Order': 1990, 'The Practice': 1997, 'Six Feet Under': 2001, 'Joan of Arcadia': 2003, 'The West Wing': 1999, 'Deadwood': 2004, 'The Sopranos': 1999, 'Boston Legal': 2004, 'ER': 1994, 'Friday Night Lights': 2006, '24': 2001, 'Heroes': 2006, 'Lost': 2004, 'Dexter': 2006, 'Damages': 2007, 'Big Love': 2006, 'House': 2004, 'Downton Abbey': 2010, "Grey's Anatomy": 2005, 'Homeland': 2011, 'Breaking Bad': 2008, 'Game of Thrones': 2011, 'CSI: Crime Scene Investigations': 2000, 'Boardwalk Empire': 2010, 'True Blood': 2008, 'House of Cards': 2013, 'True Detective': 2014})
+#
+# data.sorted_keys = lambda reverse=False: sorted(data.keys(), reverse=reverse)
+# data.sorted_values = lambda reverse=False: sorted(data.values(), reverse=reverse)
+#
+# print(data.sorted_values(reverse=True))
+
+
+# Функция custom_sort() 🌶️
+
+# from collections import OrderedDict
+#
+#
+# def custom_sort(ordered_dict, by_values=False):
+#     if by_values:
+#         for k, v in sorted(ordered_dict.items(), key=lambda item: item[1]):
+#             ordered_dict.move_to_end(k)
+#     else:
+#         for k in sorted(ordered_dict):
+#             ordered_dict.move_to_end(k)
+#
+# data = OrderedDict(Earth=3, Mercury=1, Mars=4, Venus=2)
+# custom_sort(data, by_values=True)
+#
+# print(*data.items())
