@@ -2276,3 +2276,248 @@ import csv
 # custom_sort(data, by_values=True)
 #
 # print(*data.items())
+
+
+
+# Тема урока: тип данных Counter
+
+# from collections import Counter
+#
+# files = ['emoji_smile.jpeg', 'city-of-the-sun.mp3', 'dhook_hw.json', 'sample.xml',
+#          'teamspeak3.exe', 'project_module3.py', 'math_lesson3.mp4', 'old_memories.mp4',
+#          'spiritfarer.exe', 'backups.json', 'python_for_beg1.mp4', 'emoji_angry.jpeg',
+#          'exam_results.csv', 'project_main.py', 'classes.csv', 'plants.xml',
+#          'cant-help-myself.mp3', 'microsoft_edge.exe', 'steam.exe', 'math_lesson4.mp4',
+#          'city.jpeg', 'bad-disease.mp3', 'beauty.jpeg', 'hollow_knight_silksong.exe',
+#          'whatsapp.exe', 'photoshop.exe', 'telegram.exe', 'yandex_browser.exe',
+#          'math_lesson7.mp4', 'students.csv', 'emojis.zip', '7z.zip',
+#          'bones.mp3', 'python3.zip', 'dhook_lsns.json', 'carl_backups.json',
+#          'forest.jpeg', 'python_for_pro8.mp4', 'yandexdisc.exe', 'but-you.mp3',
+#          'project_module1.py', 'nothing.xml', 'flowers.jpeg', 'grades.csv',
+#          'nvidia_gf.exe', 'small_txt.zip', 'project_module2.py', 'tab.csv',
+#          'note.xml', 'sony_vegas11.exe', 'friends.jpeg', 'data.pkl']
+#
+# res = Counter([f[f.rfind('.')+1:] for f in files])
+#
+# for k, v in sorted(res.items()):
+#     print(f'{k}: {v}')
+
+
+# Функция count_occurences()
+
+# from collections import Counter
+#
+#
+# def count_occurences(word, words):
+#     res = Counter(words.lower().split())
+#     return res[word.lower()]
+#
+# word = 'Se'
+# words = 'se sdsf sds SE sdfsdg Se dhgf gfd asd se'
+#
+# print(count_occurences(word, words))
+
+
+# Не поленимся и запишем
+
+# from collections import Counter
+#
+# srr = input().split(',')
+# res = Counter(srr)
+#
+# for k in sorted(res):
+#     print(f'{k}: {res[k]}')
+
+
+# А сколько стоит курс?
+
+# from collections import Counter
+#
+#
+# srr = input().split(',')
+# res = Counter(srr)
+# max_len = len(max(res, key=len))
+#
+# for k in sorted(res):
+#     price = sum(list(map(lambda x: ord(x) if x != ' ' else 0, k)))
+#     print(f'{k}'.ljust(max_len) + f': {price} UC x {res[k]} = {price * res[k]} UC')
+
+
+# The Zen of Python
+
+# from collections import Counter
+#
+# with open('pythonzen.txt', 'r', encoding='utf-8') as file:
+#     data = file.read().lower()
+#     res = Counter(filter(str.isalpha, data))
+#
+# for k in sorted(res):
+#     print(f'{k}: {res[k]}')
+
+
+# В поисках слов 😇
+
+# from collections import Counter
+#
+# res = Counter(list(map(str.lower, input().split())))
+# print(res.most_common(1)[0][0])
+
+
+# В поисках слов 😋
+
+
+# from collections import Counter
+#
+# res = Counter(list(map(str.lower, input().split())))
+# m = res.most_common()[-1][1]
+# f = list(filter(lambda item: item[1] <= m, res.most_common()[::-1]))
+# f = [r[0] for r in f]
+#
+# print(', '.join(sorted(f)))
+
+
+# В поисках слов 🥳
+
+# from collections import Counter
+#
+# res = Counter(list(map(str.lower, input().split())))
+#
+# min_common = res.most_common()[0][1]
+# res = list(filter(lambda item: item[1] >= min_common, res.most_common()[::-1]))
+# f = [item[0] for item in res]
+# print(max(f))
+
+
+# Статистика длин слов
+
+# from collections import Counter, defaultdict
+#
+# data = Counter([len(word) for word in input().split()])
+# print(data)
+# res = sorted(data.items(), key=lambda item: item[1])
+# [print(f'Слов длины {item[0]}: {item[1]}') for item in res]
+
+
+# Все еще достоин
+
+# import sys
+# from collections import Counter
+#
+# res = Counter()
+#
+# for word in sys.stdin:
+#     k, v = word.split()
+#     res[k] = int(v)
+#
+# print(res.most_common()[-2][0])
+
+
+# from collections import Counter
+#
+# data = Counter('aksjaskfjsklfjdslkfjajfopewtoieqpwdpqworiiqjskanvmcxbmpewrqopkqwlmdzczmxvmvlnjpjqpkqzxvmbowiqeorewi')
+#
+# data.max_values = lambda: [item for item in data.most_common() if item[1] == data.most_common()[0][1]]
+# data.min_values = lambda: [item for item in data.most_common() if item[1] == data.most_common()[-1][1]]
+#
+# print(data)
+# print(data.min_values())
+
+
+
+# Here we go again
+
+# import csv
+# from collections import Counter, defaultdict
+#
+# res = Counter()
+#
+# with open('name_log.csv', 'r', encoding='utf-8') as csv_data:
+#     rows = list(csv.reader(csv_data, delimiter=','))
+#
+#     for row in rows[1:]:
+#         name, email, time = row
+#         res.update((email, 0))
+#
+#     del res[0]
+#
+#
+# res = sorted(res.most_common(), key=lambda item: (item[0], item[1]), reverse=False)
+# for k, v in res:
+#     print(f'{k}: {v}')
+
+
+# Функция scrabble()
+
+# from collections import Counter
+#
+#
+# def scrabble(symbols, word):
+#     c_symblos = Counter(symbols.lower())
+#     c_word = Counter(word.lower())
+#     return c_word <= c_symblos
+#
+#
+# print(scrabble('bbbbbeeeeegggggggeeeeeekkkkk', 'Beegeek'))
+
+
+# Функция print_bar_chart()
+
+# from collections import Counter
+#
+#
+# def print_bar_chart(data, mark):
+#     res = Counter(data)
+#     delim = len(max(res, key=len))
+#
+#     for k, v in res.most_common():
+#         print(f'{k}'.ljust(delim) + f' |{mark * v}')
+#
+#
+# print_bar_chart('beegeek', '+')
+#
+# languages = ['java', 'java', 'python', 'C++', 'assembler', 'java', 'C++', 'C', 'pascal', 'C++', 'pascal', 'java']
+#
+# print_bar_chart(languages, '#')
+
+
+# Бесплатные курсы берут свое 😢
+
+# import json
+# import csv
+# from collections import Counter
+#
+# files = ['quarter1.csv', 'quarter2.csv', 'quarter3.csv', 'quarter4.csv']
+#
+# with open('prices.json', 'r', encoding='utf-8') as json_data:
+#     json = json.load(json_data)
+#     res = Counter()
+#
+#     for file in files:
+#         with open(file, 'r', encoding='utf-8') as csv_data:
+#             _, *rows = csv.reader(csv_data, delimiter=',')
+#
+#             res += Counter({item[0]: sum(map(int, item[1:])) for item in rows})
+#
+# total_sum = sum(json[k] * v for k, v in res.items())
+# print(total_sum)
+# 924593
+
+
+# Бесплатные курсы берут свое 😭
+
+# from collections import Counter
+#
+# available_books = Counter(input().split())
+#
+# res = 0
+#
+# for _ in range(int(input())):
+#     clas, price = input().split()
+#     if clas in available_books:
+#         res += int(price)
+#         available_books -= Counter((clas, 1))
+#
+#
+# print(res)
+
+
