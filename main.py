@@ -2521,3 +2521,109 @@ import csv
 # print(res)
 
 
+#
+# import json
+#
+#
+# with open('test.json', 'w', encoding='utf-8') as json_data:
+#     #'{"name": "Russia", "phone_code": 7, "capital": "Moscow", "currency": "RUB"}'
+#     srr = {"names": {"name": "a", "name": "b"}}
+#     json.dump(srr, json_data, indent=2)
+
+
+# Тема урока: тип данных ChainMap
+
+
+# Зоопарк
+
+# from collections import ChainMap
+# from collections import Counter
+# import json
+#
+#
+# with open('zoo.json', 'r', encoding='utf-8') as json_data:
+#     data = json.load(json_data)
+#     pets = ChainMap(*data)
+#     res = Counter(pets)
+#     print(res.total())
+
+
+# Булочный магнат
+
+# from collections import ChainMap
+# from collections import Counter
+#
+# bread = {'булочка с кунжутом': 15, 'обычная булочка': 10, 'ржаная булочка': 15}
+# meat = {'куриный бифштекс': 50, 'говяжий бифштекс': 70, 'рыбный бифштекс': 40}
+# sauce = {'сливочно-чесночный': 15, 'кетчуп': 10, 'горчица': 10, 'барбекю': 15, 'чили': 15}
+# vegetables = {'лук': 10, 'салат': 15, 'помидор': 15, 'огурцы': 10}
+# toppings = {'сыр': 25, 'яйцо': 15, 'бекон': 30}
+#
+# ingredients = Counter(input().split(','))
+# n = len(str(ingredients.most_common(1)[0][1]))
+#
+# ingredients = sorted(ingredients.items())
+# print(ingredients)
+#
+# max_len = len(max(ingredients, key=lambda x: len(x[0]))[0]) + 1
+# dopings = ChainMap(bread, meat, sauce, vegetables, toppings)
+# print(max_len)
+#
+# total = 0
+# for pos, val in ingredients:
+#     print(f'{pos:{max_len}}x {val}')
+#     total += dopings[pos] * val
+#
+# max_len += (n + 2)
+#
+# if len(f'ИТОГ: {total}р') > max_len:
+#     print('-' * len(f'ИТОГ: {total}р'))
+# else:
+#     print('-'*(max_len))
+# print(f'ИТОГ: {total}р')
+
+
+#  Функция get_all_values()
+
+# from collections import ChainMap
+#
+#
+# def get_all_values(chainmap: ChainMap, key):
+#     res = set()
+#     for item in chainmap.maps:
+#         if key in item:
+#             res.add(item[key])
+#     return res
+
+
+# Функция deep_update()
+
+# from collections import ChainMap
+#
+#
+# def deep_update(chainmap: ChainMap, key, value):
+#     if key not in chainmap:
+#         chainmap[key] = value
+#     else:
+#         for item in chainmap.maps:
+#             if key in item:
+#                 item[key] = value
+
+
+
+# Функция get_value()
+
+# from collections import ChainMap
+#
+#
+# def get_value(chainmap: ChainMap, key, from_left=True):
+#     if key not in chainmap:
+#         return None
+#     if not from_left:
+#         chainmap.maps.reverse()
+#     for item in chainmap.maps:
+#         if key in item:
+#             return item[key]
+
+
+
