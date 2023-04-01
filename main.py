@@ -2626,4 +2626,268 @@ import csv
 #             return item[key]
 
 
+# Тема урока: обработка исключений
+
+# Only numbers
+
+# import sys
+#
+# res = [srr.strip() for srr in sys.stdin]
+# nums = 0
+# strings = 0
+#
+# for item in res:
+#     try:
+#         if '.' in item:
+#             nums += float(item)
+#         else:
+#             nums += int(item)
+#     except ValueError:
+#         strings += 1
+
+# print(nums, strings, sep='\n')
+
+
+# Январь, февраль, ...
+
+# from calendar import month_name
+#
+# print(list(month_name ))
+#
+# m = dict(enumerate(month_name[1:], 1))
+#
+# try:
+#     n = int(input())
+# except:
+#     print('Введено некорректное значение')
+# else:
+#     try:
+#         print(m[n])
+#     except KeyError:
+#         print('Введено число из недопустимого диапазона')
+
+
+# Функция add_to_list_in_dict()
+
+
+# def add_to_list_in_dict(data:dict, key, element):
+#     try:
+#         data[key].append(element)
+#     except KeyError:
+#         data.setdefault(key, [element])
+#
+#
+# data = {'a': [1, 2, 3], 'b': [4, 5, 6]}
+# add_to_list_in_dict(data, 'c', 7)
+
+#print(data)
+
+
+# readme.txt
+
+# name = input()
+#
+# try:
+#     with open(name, 'r', encoding='utf-8') as file:
+#         data = file.read()
+# except FileNotFoundError:
+#     print('Файл не найден')
+# else:
+#     print(data)
+
+
+# Функция get_weekday()
+
+
+# def get_weekday(number):
+#     week = {1: "Понедельник", 2: "Вторник", 3: "Среда", 4: "Четверг", 5: "Пятница", 6: "Суббота", 7: "Воскресенье"}
+#     if type(number) != int:
+#         raise TypeError('Аргумент не является целым числом')
+#     if not (1 <= number <= 7):
+#         raise ValueError('Аргумент не принадлежит требуемому диапазону')
+#     return week[number]
+#
+# try:
+#     print(get_weekday('4'))
+# except Exception as err:
+#     print(err)
+#     print(type(err))
+
+
+# Функция get_id()
+
+
+# def get_id(names, name):
+#     if type(name) != str:
+#         raise TypeError('Имя не является строкой')
+#     else:
+#         if not (name[0].isupper() and all([ (c.islower() and c.isalpha()) for c in name[1:]])):
+#             raise ValueError('Имя не является корректным')
+#     return len(names) + 1
+#
+#
+# names = ['Timur', 'Anri', 'Dima']
+# name = 'Arthur'
+#
+# print(get_id(names, name))
+
+
+# Tanya prog
+
+# import csv
+# import os
+#
+#
+# path = "C:/Users/Root/PycharmProjects/stepik_pokoleni_for_pro/Deaths_5x1/"
+# dir_list = os.listdir(path)
+#
+# print(dir_list)
+# print(f'Value of files: {len(dir_list)}')
+#
+#
+# with open('res.csv', 'w', encoding='utf-8', newline='') as csv_file:
+#     writer = csv.writer(csv_file, delimiter=';')
+#     columns = ['Year', 'Age', 'Female', 'Male', 'Total']
+#     writer.writerow(columns)
+#
+#     for i in range(len(dir_list)):
+#
+#         with open(path + dir_list[i], 'r', encoding='utf-8', newline='') as txt_file:
+#             data = txt_file.readlines()
+#             #print(*data[0:10])
+#             #print(data[1])
+#
+#         new_data = []
+#         for d in data[3:]:
+#             #print(d.strip().split())
+#             new_data.append(d.strip().split())
+#
+#         years = [d[0] for d in new_data]
+#         years.append('2020')
+#         try:
+#             min_index = years.index("2000")
+#         except ValueError:
+#             print(f' no min year in {dir_list[i]}')
+#
+#         try:
+#            # max_index = years[::-1].index("2019")
+#             max_index = years.index("2020")
+#         except ValueError:
+#             print(f' no max year in {dir_list[i]}')
+#
+#         if dir_list[i] == 'HRV.Deaths_5x1.txt':
+#             min_index = 0
+#         if dir_list[i] == 'KOR.Deaths_5x1.txt':
+#             min_index = 0
+#
+#         new_data = new_data[min_index:max_index]
+#
+#         for row in new_data:
+#             writer.writerow(row)
+
+
+    # years = [d[0] for d in new_data]
+    # #print(*years, sep='\n')
+    # print(f'Value of lines: {len(years)}')
+    # print(f'index of first year = {years.index("2019")}')
+
+
+# Десериализация
+#
+# import json
+#
+# json_name = input()
+#
+# try:
+#     with open(json_name, 'r', encoding='utf-8') as json_data:
+#         try:
+#             data = json.load(json_data)
+#             print(data)
+#         except:
+#             print('Ошибка при десериализации')
+# except:
+#     print('Файл не найден')
+
+
+# Функция is_good_password() 👀
+
+# def is_good_password(string: str):
+#     if len(string) < 9:
+#         return False
+#     if string.lower() == string or string.upper() == string:
+#         return False
+#     if not any(map(str.isdigit, string)):
+#         return False
+#     return True
+#
+# print(is_good_password('МойПарольСамыйЛучший111'))
+
+
+# Функция is_good_password() 🐍
+
+# class PasswordError(Exception):
+#     pass
+#
+# class LengthError(PasswordError):
+#     pass
+#
+# class LetterError(PasswordError):
+#     pass
+#
+# class DigitError(PasswordError):
+#     pass
+#
+#
+# def is_good_password(string: str):
+#     if len(string) < 9:
+#         raise LengthError
+#     if string.lower() == string or string.upper() == string:
+#         raise LetterError
+#     if not any(map(str.isdigit, string)):
+#         raise DigitError
+#     return True
+#
+# try:
+#     print(is_good_password('41157081231232'))
+# except Exception as err:
+#     print(type(err))
+
+
+# Уж лучше матрицы 😐
+
+# class PasswordError(Exception):
+#     pass
+#
+# class LengthError(PasswordError):
+#     #
+#     pass
+#
+# class LetterError(PasswordError):
+#     pass
+#
+# class DigitError(PasswordError):
+#     pass
+#
+#
+# def is_good_password(string: str):
+#     if len(string) < 9:
+#         raise LengthError('LengthError')
+#     if string.lower() == string or string.upper() == string:
+#         raise LetterError('LetterError')
+#     if not any(map(str.isdigit, string)):
+#         raise DigitError('DigitError')
+#
+#     return True
+#
+#
+# import sys
+#
+# for password in sys.stdin:
+#     try:
+#         if is_good_password(password.strip()):
+#             print('Success!')
+#             break
+#     except Exception as err:
+#         print(err)
+
 
