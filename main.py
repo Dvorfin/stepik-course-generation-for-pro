@@ -2891,3 +2891,400 @@ import csv
 #         print(err)
 
 
+# Рекурсия
+
+
+# Подозрительно просто 🤫
+
+# def traffic(n):
+#     if n > 0:
+#         traffic(n - 1)
+#         print('Не парковаться')
+# traffic(3)
+
+
+# Подозрительно просто 🤐
+
+# def print_nums(start, end):
+#     def rec(num):
+#         if num <= end:
+#             print(num)
+#             rec(num + 1)
+#     rec(start)
+#
+# print_nums(1, 100)
+
+
+# def print_nums(lst):
+#     i = 0
+#     def rec(i):
+#         if i < len(lst):
+#             print(f'Элемент {i}: {lst[i]}')
+#             rec(i+1)
+#     rec(i)
+#
+# numbers = [243, -279, 395, 130, 89, 269, 861, 669, 939, 367, -46, 710, 841, -280, -244, 274, -132, 273, 418, 432, -341, 437, 360, 960, 195, 792, 106, 461, -35, 980, -80, 540, -358, 69, -26, -416, 597, 96, 533, 232, 755, 894, 331, 323, -383, -386, 231, 436, 553, 967, 166, -151, 772, 434, 325, 301, 275, 431, 556, 728, 558, 702, 463, 127, 984, 212, 876, -287, -16, -177, 577, 604, 116, 500, 653, 669, 916, 802, 817, 762, -210, -353, 144, -351, 777, 805, 692, 22, -303, 249, 190, 411, 236, -274, 174, 380, 71, 124, -85, 430]
+#
+# print_nums(numbers)
+
+
+# Обратный порядок
+
+import sys
+
+#data = [int(line.strip()) for line in sys.stdin]
+# data = [1, 2,3,4,0]
+# print(data)
+#
+# def rev(lst):
+#     def rec(index=0):
+#         if index < len(lst):
+#             rec(index + 1)
+#             print(lst[index])
+#     rec()
+#
+# rev(data)
+
+
+# Функция triangle() 😥
+#
+# def triangle(h):
+#     if h > 0:
+#         print('*' * h)
+#         triangle(h - 1)
+#
+# triangle(3)
+
+
+# Функция triangle() 😰
+
+# def triangle(h):
+#     def rec(i=1):
+#         if i <= h:
+#             print('*' * i)
+#             rec(i + 1)
+#     rec()
+#
+# triangle(3)
+
+
+# Песочные часы
+
+# def print_clock(n, num):
+#     if n > 4:
+#         print((str(num) * n).center(16))
+#         print_clock(n - 4, num + 1)
+#     print((str(num) * n).center(16))
+#
+# print_clock(16, 1)
+
+
+# Функция print_digits() 😉
+
+# def print_digits(number):
+#     def rec(index=0):
+#         if index < len(str(number)):
+#             rec(index + 1)
+#             print(str(number)[index])
+#     rec()
+
+
+# Функция print_digits() 😎
+
+# def print_digits(number):
+#     if number:
+#         print_digits(number // 10)
+#         print(number % 10)
+#
+# print_digits(12345)
+
+
+# Количество цифр
+
+# def val_nums(num):
+#     dct = {'val': 0}
+#
+#     def rec(n):
+#         if n > 9:
+#             rec(n // 10)
+#         dct['val'] += 1
+#         return dct['val']
+#
+#     return rec(num)
+#
+# num = 505
+# print(num % 10)
+# print(val_nums(50))
+
+
+
+# Сумма цифр
+
+
+# def rec(num):
+#     if num <= 0:
+#         return 0
+#     else:
+#         return (num % 10) + rec(num // 10)
+#
+#
+# print(rec(int(input())))
+
+
+# Функция number_of_frogs()
+
+# def number_of_frogs(year):
+#
+#     def rec(year, frogs=77):
+#         if year == 1:
+#             return frogs
+#         else:
+#             frogs = 3 * (frogs - 30)
+#             return rec(year - 1, frogs)
+#     r = rec(year)
+#     return r
+#
+# print(number_of_frogs(10))
+
+
+# Функция range_sum()
+
+# def range_sum(numbers, start, end):
+#     if start > end:
+#         return 0
+#     else:
+#         return numbers[start] + range_sum(numbers, start + 1, end)
+#
+# print(range_sum([1, 2, 3, 4, 5, 6, 7, 8, 9], 3, 7))
+
+
+# Обычное возведение в степень
+
+# def get_pow(a, n):
+#     if n == 0:
+#         return 1
+#     else:
+#         return a * get_pow(a, n - 1)
+#
+# print(get_pow(5, 2))
+
+
+# Быстрое возведение в степень
+
+# def get_fast_pow(a, n):
+#     if n == 0:
+#         return 1
+#     elif n % 2 == 0:
+#         return get_fast_pow(a * a, n/2)
+#     else:
+#         return a * get_fast_pow(a, n - 1)
+#
+# print(get_fast_pow(2, 10))
+
+
+# Функция recursive_sum()
+
+# def recursive_sum(a, b):
+#     # if abs(a) > abs(b):
+#     #     a, b = b, a
+#
+#     if a == 0:
+#         return b
+#     else:
+#         #print(a)
+#         return recursive_sum(a - 1, b + 1)
+#
+# print(recursive_sum(10, 22))
+#
+# print(recursive_sum(99, 0))
+
+
+# Функция is_power()
+
+# def is_power(num):
+#     if num < 2:
+#         if num == 1:
+#             return True
+#         else:
+#             return False
+#     else:
+#         return is_power(num / 2)
+#
+#print(is_power(512))
+
+
+# Функция tribonacci()
+
+# def tribonacci(n):
+#     cache = {1: 1, 2: 1, 3: 1}
+#
+#     def rec(n):
+#         res = cache.get(n)
+#         if res is None:
+#             res = rec(n - 3) + rec(n - 2) + rec(n - 1)
+#             cache[n] = res
+#         return res
+#     return rec(n)
+#
+#
+# print(tribonacci(7))
+
+
+# Функция is_palindrome()
+
+# def is_palindrome(string):
+#     if len(string) in [0, 1] or (string is None):
+#         return True
+#     elif string[0] == string[-1]:
+#         return is_palindrome(string[1:-1])
+#     else:
+#         return False
+#
+# print(is_palindrome(''))
+# print(is_palindrome('stepik'))
+# print(is_palindrome('level'))
+# print('level'[1:-1])
+
+
+# Функция to_binary()
+
+# def to_binary(num):
+#     #res = {'v': ''}
+#     res = []
+#     def rec(num):
+#         if num == 0:
+#             #return res['v']
+#             return res
+#         else:
+#             #res['v'] += str(num % 2)
+#             res.append(num % 2)
+#             return rec(num // 2)
+#
+#     rec(num)
+#     if len(res) == 0:
+#         return 0
+#     res.reverse()
+#     return ''.join(map(str, res))
+#
+# print(to_binary(15))
+
+
+# Без циклов
+
+# def rev(n):
+#     if n > 0:
+#         print(n)
+#         rev(n - 5)
+#     print(n)
+#
+# rev(16)
+
+
+# Функция recursive_sum()
+
+# def recursive_sum(nested_lists):
+#     res = 0
+#
+#     for n in nested_lists:
+#         if type(n) == list:
+#             #for i in nested_lists:
+#             res += recursive_sum(n)
+#         if type(n) == int:
+#             #return nested_lists
+#             res += n
+#
+#     return res
+#
+#
+# my_list = [1, [4, 4], 2, [1, [2, 10]]]
+#
+# print(recursive_sum(my_list))
+
+
+# Функция linear()
+
+# def linear(lst):
+#     res = []
+#     for n in lst:
+#         if isinstance(n, list):
+#             res.extend(linear(n))
+#         else:
+#             res.append(n)
+#     return res
+#
+#
+#
+# my_list = [3, [4], [5, [6, [7, 8]]]]
+#
+# print(linear(my_list))
+
+
+# Функция get_value()
+
+# def get_value(dicts, key):
+#     if key in dicts:
+#         return dicts[key]
+#
+#     for k, v in dicts.items():
+#         if isinstance(v, dict):
+#             value = get_value(v, key)
+#             if value is not None:
+#                 return value
+#
+#
+# data = {'firstName': 'Тимур', 'lastName': 'Гуев', 'birthDate': {'day': 10, 'month': 'October', 'year': 1993},
+#         'address': {'streetAddress': 'Часовая 25, кв. 127',
+#                     'city': {'region': 'Московская область', 'type': 'город', 'cityName': 'Москва'},
+#                     'postalCode': '125315'}}
+#
+# print(get_value(data, 'cityName'))
+
+
+# Функция get_all_values() 🌶️
+
+# def get_all_values(dicts, key):
+#     res = []
+#
+#     for k, v in dicts.items():
+#         if key in dicts:
+#             res.append(dicts[key])
+#         if isinstance(v, dict):
+#             value = get_all_values(v, key)
+#             res.extend(value)
+#
+#     return set(res)
+#
+# my_dict = {
+#            'Arthur': {'hobby': 'videogames', 'drink': 'cacao'},
+#            'Timur': {'hobby': 'math'},
+#            'Dima': {
+#                    'hobby': 'CS',
+#                    'sister':
+#                        {
+#                          'name': 'Anna',
+#                          'hobby': 'TV',
+#                          'age': 14
+#                        }
+#                    }
+#            }
+#
+# result = get_all_values(my_dict, 'hobby')
+# print(*sorted(result))
+
+
+# Функция dict_travel() 🌶️🌶️
+
+
+# def dict_travel(dicts, path=''):
+#
+#     for k, v in sorted(dicts.items()):
+#         if isinstance(v, dict):
+#             dict_travel(v, path + f'{k}.')
+#         else:
+#             print(f'{path}{k}: {v}')
+#
+#
+# data = {'a': 1, 'b': {'c': 30, 'a': 10, 'b': 20}}
+#
+# dict_travel(data)
+
