@@ -2891,6 +2891,40 @@ import csv
 #         print(err)
 
 
+
+# Функция to_binary()
+
+# def to_binary(number):
+#     res = ''
+#     if number <= 0:
+#         return str(number)
+#     else:
+#         res += str(number % 2)
+#         return res + to_binary(number // 2)
+
+def to_binary(number):
+    res = ''
+    if number == 0:
+        return ''
+    else:
+        res += str(number % 2)
+        return to_binary(number // 2) + res
+
+print(to_binary(0))
+print(to_binary(8))
+# print(to_binary(1))
+# print(to_binary(15))
+
+
+
+# num = int(input())
+# srr = ''
+# while num > 0:
+#     srr = str(num % 2) + srr
+#     print(num, num // 2, num % 2)
+#    # print(num % 2, end='')
+#     num = num // 2
+# print(srr)
 # Рекурсия
 
 
@@ -3494,3 +3528,81 @@ import sys
 #
 # print_operation_table(lambda a, b: a * b, 5, 5)
 # print_operation_table(pow, 5, 4)
+
+
+# Функция verification()
+
+# import string
+#
+# def verification(login, paswword, succcess, failure):
+#
+#     lower = any(c in string.ascii_lowercase for c in paswword)
+#     upper = any(c in string.ascii_uppercase for c in paswword)
+#     digit = any(c in string.digits for c in paswword)
+#
+#     if all([lower, upper, digit]):
+#         succcess(login)
+#     else:
+#         msg = ['в пароле нет ни одной буквы',
+#                'в пароле нет ни одной заглавной буквы',
+#                'в пароле нет ни одной строчной буквы',
+#                'в пароле нет ни одной цифры']
+#         err = [lower or upper, upper, lower, digit]
+#
+#         for i in range(4):
+#             if not err[i]:
+#                 failure(login, msg[i])
+#
+#
+# def success(login):
+#     print(f'Здравствуйте, {login}!')
+#
+# def failure(login, text):
+#     print(f'{login}, попробуйте снова. Текст ошибки: {text}')
+#
+# verification('Arthur_Davletov', 'HELLO_WORLD', success, failure)
+
+
+# Функция numbers_sum()
+
+# def numbers_sum(elems):
+#     """Принимает список и возвращает сумму его чисел (int, float),
+# игнорируя нечисловые объекты. 0 - если в списке чисел нет."""
+#     return sum(filter(lambda x: isinstance(x, int) or isinstance(x, float), elems))
+#
+# print(numbers_sum([1, '2', 3, 4, 'five']))
+# print(numbers_sum.__doc__)
+
+
+# Новый print()
+
+# old_print = print
+# def print(*args, **kwargs):
+#     sep, end = ' ', '\n'
+#     if 'sep' in kwargs:
+#         sep = kwargs['sep'].upper()
+#     if 'end' in kwargs:
+#         end = kwargs['end'].upper()
+#
+#     res = [s.upper() if isinstance(s, str) else s for s in args]
+#     res = [s if isinstance(s, str) else repr(s) for s in res]
+#
+#     res = f'{sep}'.join(res) + end
+#     old_print(res)
+
+
+
+# print(type(repr([1, 2, 3])))
+# print(repr('hui'))
+# tmp = print
+# print = new_print
+# words = ('black', 'white', 'grey', 'black-1', 'white-1', 'python')
+#
+# res = print(*words, sep=' to ', end=' LOVE')
+# print = tmp
+#
+# print(res)
+
+print('beegeek', [1, 2, 3], 4)
+words = [['black', 'white', 'grey', 'black-1', 'white-1', 'python']]
+print(*words, sep=' to ', end=' LOVE')
