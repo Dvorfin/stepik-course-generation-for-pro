@@ -3603,6 +3603,57 @@ import sys
 #
 # print(res)
 
-print('beegeek', [1, 2, 3], 4)
-words = [['black', 'white', 'grey', 'black-1', 'white-1', 'python']]
-print(*words, sep=' to ', end=' LOVE')
+# print('beegeek', [1, 2, 3], 4)
+# words = [['black', 'white', 'grey', 'black-1', 'white-1', 'python']]
+# print(*words, sep=' to ', end=' LOVE')
+
+
+# Пользовательские атрибуты функций
+
+# Функция polynom()
+
+# def polynom(x):
+#     polynom.__dict__.setdefault('values', set())
+#     polynom.__dict__['values'].add(x**2)
+#     #   polynom.values = polynom.values | set(x**2)
+#     return x**2
+#
+# print(polynom.values)
+
+
+# Функция remove_marks()
+
+# def remove_marks(text:str, marks):
+#     remove_marks.__dict__.setdefault('count', 0)
+#     remove_marks.__dict__['count'] += 1
+#     for m in marks:
+#         text = text.replace(m, '')
+#     return text
+#
+# marks = '.,!?'
+# text = 'Are you listening? Meet my family! There are my parents, my brother and me.'
+# for mark in marks:
+#     print(remove_marks(text, mark))
+# print(remove_marks.count)
+
+
+def outer_function(arg):
+    num = 5
+    name = 'Timur'
+    numbers = [1, 2, 3]
+
+    def inner_function():  # определяем вложенную функцию
+        num = 10
+        name = 'Arthur'
+        print(arg)
+        print(num)
+        print(numbers)
+        print(name)
+
+    return inner_function  # возвращаем вложенную функцию
+
+
+inner = outer_function('python')
+inner()
+for var in inner.__closure__:
+    print(var.cell_contents)
