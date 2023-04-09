@@ -3680,3 +3680,47 @@ from datetime import date
 
 
 # Тема урока: аннотации типов
+
+# Функция get_digits()
+
+# def get_digits(number: int | float) -> list[int]:
+#     return [int(i) for i in str(number) if i.isdigit()]
+
+
+# Функция top_grade()
+
+# def top_grade(grades: dict[str, str | list[int]]) -> dict[str, str | int]:
+#     return dict(name=grades['name'], top_grade=max(grades['grades']))
+#
+# info = {'name': 'Timur', 'grades': [30, 57, 99]}
+#
+# print(top_grade(info))
+#
+# print(*top_grade.__annotations__.values())
+
+
+# Функция cyclic_shift()
+
+# def cyclic_shift(numbers: list[int | float], step: int) -> None:
+#     for i in range(len(numbers) + step):
+#         a = numbers.pop()
+#         numbers.insert(0, a)
+#
+#
+# numbers = [1, 2, 3, 4, 5]
+# cyclic_shift(numbers, 1)
+#
+# print(numbers)
+
+
+# Функция matrix_to_dict()
+
+# def matrix_to_dict(matrix: list[list[int | float]]) -> dict[int, list[int | float]]:
+#     #return dict([i+1=matrix[i] for i in range(len(matrix))])
+#     return {key: val for (key, val) in enumerate(matrix, 1)}
+#
+# matrix = [[5, 6, 7], [8, 3, 2], [4, 9, 8]]
+#
+# print(matrix_to_dict(matrix))
+#
+# print(*matrix_to_dict.__annotations__.values())
