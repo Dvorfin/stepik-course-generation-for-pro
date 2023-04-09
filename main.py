@@ -3603,6 +3603,80 @@ import sys
 #
 # print(res)
 
-print('beegeek', [1, 2, 3], 4)
-words = [['black', 'white', 'grey', 'black-1', 'white-1', 'python']]
-print(*words, sep=' to ', end=' LOVE')
+
+# Функция power()
+
+# def power(degree):
+#     def maker(num):
+#         return num ** degree
+#     return maker
+#
+# square = power(2)
+# print(square(5))
+
+
+# Функция generator_square_polynom()
+
+# def generator_square_polynom(a, b, c):
+#     return lambda x: a * (x ** 2) + b * x + c
+#
+# f = generator_square_polynom(1, 2, 1)
+# print(f(5))
+
+
+# Функция sourcetemplate()
+
+# def sourcetemplate(url):
+#     def maker_query(**kwargs):
+#         if kwargs:
+#             return f'{url}?' + '&'.join(f'{k}={v}' for k, v in sorted(kwargs.items()))
+#         return url
+#     return maker_query
+#
+# url = 'https://beegeek.ru'
+# load = sourcetemplate(url)
+# print(load())
+
+
+# Функция date_formatter()
+
+from datetime import date
+# def date_formatter(country_code):
+#     def format(d):
+#         d_dict = {'ru': '%d.%m.%Y',
+#              'us': '%m-%d-%Y',
+#              'ca': '%Y-%m-%d',
+#              'br': '%d/%m/%Y',
+#              'fr': '%d.%m.%Y',
+#              'pt': '%d-%m-%Y', }
+#         return d.strftime(d_dict[country_code])
+#
+#     return format
+#
+# date_ru = date_formatter('us')
+# today = date(2025, 1, 5)
+# print(date_ru(today))
+
+
+# Функция sort_priority() 🌶️
+
+# def sort_priority(values, group):
+#     tmp = values.copy()
+#     a = set(values)
+#     b = set(group)
+#     a = a - b
+#     values.clear()
+#     for n in sorted(list(b)):
+#         if n in tmp:
+#             values.append(n)
+#     for n in sorted(list(a)):
+#         values.append(n)
+#
+# numbers = [8, 3, 1, 2, 5, 4, 7, 6]
+# group = {5, 7, 2, 3}
+# sort_priority(numbers, group)
+#
+# print(numbers)
+
+
+# Тема урока: аннотации типов
