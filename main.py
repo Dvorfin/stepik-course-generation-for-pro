@@ -3592,17 +3592,265 @@ import sys
 
 
 
-# print(type(repr([1, 2, 3])))
-# print(repr('hui'))
-# tmp = print
-# print = new_print
-# words = ('black', 'white', 'grey', 'black-1', 'white-1', 'python')
-#
-# res = print(*words, sep=' to ', end=' LOVE')
-# print = tmp
-#
-# print(res)
+# Функция power()
 
-print('beegeek', [1, 2, 3], 4)
-words = [['black', 'white', 'grey', 'black-1', 'white-1', 'python']]
-print(*words, sep=' to ', end=' LOVE')
+# def power(degree):
+#     def maker(num):
+#         return num ** degree
+#     return maker
+#
+# square = power(2)
+# print(square(5))
+
+
+# Функция generator_square_polynom()
+
+# def generator_square_polynom(a, b, c):
+#     return lambda x: a * (x ** 2) + b * x + c
+#
+# f = generator_square_polynom(1, 2, 1)
+# print(f(5))
+
+
+# Функция sourcetemplate()
+
+# def sourcetemplate(url):
+#     def maker_query(**kwargs):
+#         if kwargs:
+#             return f'{url}?' + '&'.join(f'{k}={v}' for k, v in sorted(kwargs.items()))
+#         return url
+#     return maker_query
+#
+# url = 'https://beegeek.ru'
+# load = sourcetemplate(url)
+# print(load())
+
+
+# Функция date_formatter()
+
+from datetime import date
+# def date_formatter(country_code):
+#     def format(d):
+#         d_dict = {'ru': '%d.%m.%Y',
+#              'us': '%m-%d-%Y',
+#              'ca': '%Y-%m-%d',
+#              'br': '%d/%m/%Y',
+#              'fr': '%d.%m.%Y',
+#              'pt': '%d-%m-%Y', }
+#         return d.strftime(d_dict[country_code])
+#
+#     return format
+#
+# date_ru = date_formatter('us')
+# today = date(2025, 1, 5)
+# print(date_ru(today))
+
+
+# Функция sort_priority() 🌶️
+
+# def sort_priority(values, group):
+#     tmp = values.copy()
+#     a = set(values)
+#     b = set(group)
+#     a = a - b
+#     values.clear()
+#     for n in sorted(list(b)):
+#         if n in tmp:
+#             values.append(n)
+#     for n in sorted(list(a)):
+#         values.append(n)
+#
+# numbers = [8, 3, 1, 2, 5, 4, 7, 6]
+# group = {5, 7, 2, 3}
+# sort_priority(numbers, group)
+#
+# print(numbers)
+
+
+# Тема урока: аннотации типов
+
+# Функция get_digits()
+
+# def get_digits(number: int | float) -> list[int]:
+#     return [int(i) for i in str(number) if i.isdigit()]
+
+
+# Функция top_grade()
+
+# def top_grade(grades: dict[str, str | list[int]]) -> dict[str, str | int]:
+#     return dict(name=grades['name'], top_grade=max(grades['grades']))
+#
+# info = {'name': 'Timur', 'grades': [30, 57, 99]}
+#
+# print(top_grade(info))
+#
+# print(*top_grade.__annotations__.values())
+
+
+# Функция cyclic_shift()
+
+# def cyclic_shift(numbers: list[int | float], step: int) -> None:
+#     for i in range(len(numbers) + step):
+#         a = numbers.pop()
+#         numbers.insert(0, a)
+#
+#
+# numbers = [1, 2, 3, 4, 5]
+# cyclic_shift(numbers, 1)
+#
+# print(numbers)
+
+
+# Функция matrix_to_dict()
+
+# def matrix_to_dict(matrix: list[list[int | float]]) -> dict[int, list[int | float]]:
+#     #return dict([i+1=matrix[i] for i in range(len(matrix))])
+#     return {key: val for (key, val) in enumerate(matrix, 1)}
+#
+# matrix = [[5, 6, 7], [8, 3, 2], [4, 9, 8]]
+#
+# print(matrix_to_dict(matrix))
+#
+# print(*matrix_to_dict.__annotations__.values())
+
+
+
+
+# Декораторы
+
+#
+# def uppercase_decorator(func):
+#     def wrapper():
+#         original_result = func()
+#         modified_result = original_result.upper()
+#         return modified_result
+#     return wrapper
+#
+#
+# def greet():
+#     return 'Hello world!'
+#
+# greet2 = uppercase_decorator(greet)
+#
+# print(greet())
+# print(greet2())
+
+
+
+# Декоратор sandwich
+
+# def sandwich(func):
+#     def wrapper(*args, **kwargs):
+#         print('---- Верхний ломтик хлеба ----')
+#         r = func(*args, **kwargs)
+#         print('---- Нижний ломтик хлеба ----')
+#         return r
+#     return wrapper
+#
+# @sandwich
+# def add_ingredients(ingredients):
+#     print(' | '.join(ingredients))
+#
+# add_ingredients(['томат', 'салат', 'сыр', 'бекон'])
+
+# @sandwich
+# def beegeek():
+#     return 'beegeek'
+#
+# print(beegeek())
+
+
+# Новый print
+
+# def new_print(func):
+#     def wrapper(*args, **kwargs):
+#         sep = kwargs.get('sep', ' ')
+#         end = kwargs.get('end', '\n')
+#         return func(f'{sep}'.join(map(str, args)).upper(), end=end.upper())
+#     return wrapper
+#
+# print = new_print(print)
+#
+# # print('hi', 'there', end='!')
+# print(111, 222, 333, sep='xxx', end='python')
+# print(111, 222, 333, sep='--', end='\n')
+# print(111, 222, 333, sep='qqq', end='!')
+
+
+# Декоратор do_twice
+
+# def do_twice(func):
+#     def wrapper(*args, **kwargs):
+#         m = func(*args, **kwargs)
+#         m = func(*args, **kwargs)
+#         return m
+#     return wrapper
+#
+# @do_twice
+# def beegeek():
+#     print('beegeek')
+
+# print(beegeek())
+
+
+# Декоратор reverse_args
+
+# def reverse_args(func):
+#     def wrapper(*args, **kwargs):
+#         args = args[::-1]
+#         r = func(*args, **kwargs)
+#         return r
+#     return wrapper
+#
+# @reverse_args
+# def power(a, n):
+#     return a ** n
+
+# @reverse_args
+# def concat(a, b, c):
+#     return a + b + c
+
+# print(concat('apple', 'cherry', 'melon'))
+# print(power(2, 3))
+
+
+# Декоратор exception_decorator
+
+# def exception_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         try:
+#             return (func(*args, **kwargs), 'Функция выполнилась без ошибок')
+#         except:
+#             return (None, 'При вызове функции произошла ошибка')
+#     return wrapper
+#
+# sum = exception_decorator(sum)
+#
+# print(sum(['199', '1', 187]))
+
+
+# Декоратор takes_positive
+
+# def takes_positive(func):
+#     def wrapper(*args, **kwargs):
+#         lst = list(args)
+#         lst.extend(kwargs.values())
+#         if not all([isinstance(n, int) for n in lst]):
+#             raise TypeError
+#         else:
+#             if any([n <= 0 for n in lst]):
+#                 raise ValueError
+#             else:
+#                 return func(*args, **kwargs)
+#     return wrapper
+#
+#
+# @takes_positive
+# def positive_sum(*args, **kwargs):
+#     return sum(args) + sum(kwargs.values())
+#
+#
+# try:
+#     print(positive_sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, par1=1, sep=-40))
+# except Exception as err:
+#     print(type(err))
