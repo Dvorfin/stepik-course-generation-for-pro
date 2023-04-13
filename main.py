@@ -3854,3 +3854,170 @@ from datetime import date
 #     print(positive_sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, par1=1, sep=-40))
 # except Exception as err:
 #     print(type(err))
+
+
+# Декоратор square
+
+# import functools
+#
+# def square(func):
+#     @functools.wraps(func)
+#     def wrapper(*args, **kwargs):
+#         return func(*args, **kwargs) ** 2
+#     return wrapper
+#
+# @square
+# def add(*args, **kwargs):
+#     return sum([*args, *kwargs.values()])
+
+# print(add(3, 7, x=10, y=30))
+
+
+# Декоратор returns_string
+
+# import functools
+#
+# def returns_string(func):
+#     @functools.wraps(func)
+#     def wrapper(*args, **kwargs):
+#         if isinstance(func(*args, **kwargs), str):
+#             return func(*args, **kwargs)
+#         else:
+#             raise TypeError
+#     return wrapper
+#
+#
+# @returns_string
+# def add(a, b):
+#     return a + b
+#
+# try:
+#     print(add(3, 7))
+# except TypeError as e:
+#     print(type(e))
+
+
+# Декоратор trace
+
+# import functools
+#
+# def trace(func):
+#     @functools.wraps(func)
+#     def wrapper(*args, **kwargs):
+#         print(f'TRACE: вызов {func.__name__}() с аргументами: {args}, {kwargs}')
+#         res = func(*args, **kwargs)
+#         print(f'TRACE: возвращаемое значение {func.__name__}(): {repr(res)}')
+#         return res
+#     return wrapper
+#
+# # TEST_3:
+# @trace
+# def beegeek():
+#     '''beegeek docs'''
+#     return 'beegeek'
+#
+# print(beegeek())
+# print(beegeek.__name__)
+# print(beegeek.__doc__)
+
+
+# Декоратор prefix
+
+# import functools
+#
+# def prefix(string, to_the_end=False):
+#
+#     def dectorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             if to_the_end:
+#                 return func(*args, **kwargs) + string
+#             else:
+#                 return string + func(*args, **kwargs)
+#         return wrapper
+#     return dectorator
+#
+#
+# @prefix(' online-school', to_the_end=True)
+# def beegeek():
+#     '''beegeek docs'''
+#     return 'beegeek'
+#
+#
+# print(beegeek.__name__)
+# print(beegeek.__doc__)
+# print(beegeek())
+
+
+# Декоратор make_html
+
+# import functools
+# def make_html(tag):
+#
+#     def decorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             return f'<{tag}>' + func(*args, **kwargs) + f'</{tag}>'
+#         return wrapper
+#     return decorator
+#
+#
+# @make_html('i')
+# @make_html('del')
+# def get_text(text):
+#     return text
+#
+#
+# print(get_text(text='decorators are so cool!'))
+
+
+# Декоратор repeat
+
+# import functools
+#
+# def repeat(times):
+#
+#     def dectorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             for i in range(times):
+#                 val = func(*args, **kwargs)
+#             return val
+#         return wrapper
+#     return dectorator
+#
+#
+# @repeat(4)
+# def say_beegeek():
+#     '''documentation'''
+#     print('beegeek')
+#
+#
+# print(say_beegeek.__name__)
+# print(say_beegeek.__doc__)
+
+
+# Декоратор strip_range
+
+import functools
+
+def strip_range(start, end, char='.'):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            str = func(*args, **kwargs)
+
+            return str[:start] + f'{char}' * (end-start) + str[end:]
+        return wrapper
+    return decorator
+
+
+@strip_range(20, 30)
+def beegeek():
+    return 'beegeek'
+
+
+print(beegeek())
+
+
+print(beegeek())
