@@ -3856,6 +3856,8 @@ from datetime import date
 #     print(type(err))
 
 
+
+
 # Декоратор square
 
 # import functools
@@ -3999,25 +4001,173 @@ from datetime import date
 
 # Декоратор strip_range
 
-import functools
+# import functools
+#
+# def strip_range(start, end, char='.'):
+#     def decorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             str = func(*args, **kwargs)
+#             nonlocal end
+#             if end > len(str):
+#                 end = len(str)
+#             return str[:start] + f'{char}' * (end-start) + str[end:]
+#         return wrapper
+#     return decorator
+#
+#
+# @strip_range(20, 30)
+# def beegeek():
+#     return 'beegeek'
+#
+# print(beegeek())
 
-def strip_range(start, end, char='.'):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            str = func(*args, **kwargs)
 
-            return str[:start] + f'{char}' * (end-start) + str[end:]
-        return wrapper
-    return decorator
+# Декоратор returns
+
+# import functools
+#
+#
+# def returns(datatype):
+#     def decorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             res = func(*args, **kwargs)
+#             if datatype != type(res):
+#                 raise TypeError
+#             return res
+#         return wrapper
+#     return decorator
+#
+#
+# @returns(list)
+# def append_this(li, elem):
+#     '''append_this docs'''
+#     return li + [elem]
+#
+# print(append_this.__name__)
+# print(append_this.__doc__)
+# print(append_this([1, 2, 3], elem=4))
 
 
-@strip_range(20, 30)
-def beegeek():
-    return 'beegeek'
+# Декоратор takes
+
+# import functools
+#
+# def takes(*args_outer):
+#     def decorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             res = func(*args, **kwargs)
+#             if not all(type(a) in args_outer for a in args):
+#                 raise TypeError
+#             if not all(type(a) in args_outer for a in kwargs.values()):
+#                 raise TypeError
+#             return res
+#
+#         return wrapper
+#     return decorator
+#
+#
+# @takes(str)
+# def beegeek(word, repeat):
+#     return word * repeat
+#
+#
+# try:
+#     print(beegeek('beegeek', repeat=2))
+# except TypeError as e:
+#     print(type(e))
 
 
-print(beegeek())
+# Декоратор add_attrs
+
+# import functools
+#
+# def add_attrs(**kwargs_outer):
+#     def decorator(func):
+#         for k, v in kwargs_outer.items():
+#             func.__dict__[k] = v
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             return func(*args, **kwargs)
+#         return wrapper
+#
+#     return decorator
+#
+#
+# @add_attrs(attr2='geek')
+# @add_attrs(attr1='bee')
+# def beegeek():
+#     return 'beegeek'
+#
+#
+# print(beegeek.attr1)
+# print(beegeek.attr2)
 
 
-print(beegeek())
+# Декоратор ignore_exception
+
+# import functools
+#
+# def ignore_exception(*args_outer):
+#
+#     def decorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             try:
+#                 res = func(*args, **kwargs)
+#             except Exception as err:
+#                 if type(err) in args_outer:
+#                     print(f'Исключение {type(err).__name__} обработано')
+#                 else:
+#                     raise err
+#             else:
+#                 return res
+#         return wrapper
+#
+#     return decorator
+#
+#
+# @ignore_exception(ValueError, TypeError, ZeroDivisionError, NameError)
+# def beegeek():
+#     return 'beegeek'
+#
+# print(beegeek())
+
+
+
+# Декоратор retry
+
+# import functools
+#
+# class MaxRetriesException(Exception):
+#     pass
+#
+#
+# def retry(times):
+#
+#     def decorator(func):
+#         @functools.wraps(func)
+#         def wrapper(*args, **kwargs):
+#             for i in range(times):
+#                 try:
+#                     res = func(*args, **kwargs)
+#                     return res
+#                 except Exception as err:
+#                     pass
+#
+#             raise MaxRetriesException
+#
+#         return wrapper
+#     return decorator
+#
+#
+# @retry(8)
+# def beegeek():
+#     beegeek.calls = beegeek.__dict__.get('calls', 0) + 1
+#     if beegeek.calls < 5:
+#         raise ValueError
+#     print('beegeek')
+#
+# beegeek()
