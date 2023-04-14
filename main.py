@@ -4171,3 +4171,59 @@ from datetime import date
 #     print('beegeek')
 #
 # beegeek()
+
+
+
+
+# 9.9 Модуль functools
+
+
+# Две функции
+
+# def send_email(name, email_address, text):
+#
+#     return f'В письме для {name} на адрес {email_address} сказано следующее: {text}'
+#
+#
+# from functools import partial
+#
+# to_Timur = partial(send_email, 'Тимур', 'timyrik20@beegeek.ru')
+#
+# send_an_invitation = partial(send_email, text='Школа BEEGEEK приглашает Вас на новый курс по программированию на языке Python. тутут....')
+
+
+# Кэширование и мемоизация
+
+
+# Просто Дима 🙂
+
+# import sys
+#
+# from functools import cache
+#
+# @cache
+# def count_words(word):
+#     return ''.join(sorted(word))
+#
+#
+# for str in sys.stdin:
+#     print(count_words(str.strip()))
+
+#print(count_words('tutorial'))
+
+
+# Просто Дима 🙃
+
+# from functools import cache
+#
+# @cache
+# def ways(n):
+#     if n <= 0:
+#         return 0
+#     elif n == 1:
+#         return 1
+#     else:
+#         return ways(n-1) + ways(n-3) + ways(n-4)
+#
+#
+# print(ways(10))
