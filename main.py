@@ -4227,3 +4227,418 @@ from datetime import date
 #
 #
 # print(ways(10))
+
+
+# Итераторы и генератры
+
+# Функция filterfalse()
+
+# def filterfalse(predicate, iterable):
+#     if predicate is None:
+#         predicate = lambda x: not bool(x)
+#         return filter(predicate, iterable)
+#     else:
+#         return filter(lambda x: not predicate(x), iterable)
+#
+#
+# objects = [0, 1, True, False, 17, []]
+#
+# print(*filterfalse(None, objects))
+
+
+# Функция transpose()
+
+# def transpose(m):
+#     return list(map(list, zip(*m)))
+#
+# matrix = [[1, 2, 3],
+#           [4, 5, 6],
+#           [7, 8, 9]]
+#
+# for row in transpose(matrix):
+#     print(row)
+
+
+# Функция get_min_max() 😎
+
+# def get_min_max(data):
+#     if data:
+#         return min(enumerate(data, 0), key=lambda x: x[1])[0], max(enumerate(data, 0), key=lambda x: x[1])[0]
+#     return None
+#
+# data = []
+#
+# print(get_min_max(data))
+
+
+# Функция get_min_max() 😳
+
+# def get_min_max(iterable):
+#     if iterable:
+#         r = iter(iterable)
+#         try:
+#             min_num = next(r)
+#             try:
+#                 max_num = next(r)
+#                 for num in iterable:
+#                     if min_num > num:
+#                         min_num = num
+#
+#                     if max_num < num:
+#                         max_num = num
+#
+#                 return min_num, max_num
+#             except Exception:
+#                 return min_num, min_num
+#
+#         except Exception:
+#             return None
+#
+# iterable = [69]
+#
+# print(get_min_max(iterable))
+
+
+# Функция starmap()
+
+# def starmap(func, iterable):
+#     r = zip(*iterable)
+#     return map(func, *r)
+#
+# points = [(1, 1, 1), (1, 1, 2), (2, 2, 3)]
+#
+# print(*starmap(lambda x, y, z: x * y * z, points))
+
+
+# Функция is_iterable()
+
+# def is_iterable(obj):
+#     return '__iter__' in dir(obj)
+
+
+# Функция is_iterator()
+
+# def is_iterator(obj):
+#     return '__next__' in dir(obj)
+#
+# print(is_iterator([1, 2, 3, 4, 5]))
+# beegeek = map(str.upper, 'beegeek')
+#
+# print(is_iterator(beegeek))
+
+
+# Функция random_numbers()
+
+# def random_numbers(left, right):
+#     return iter(lambda: left, right +1)
+#
+#
+# iterator = random_numbers(1, 1)
+#
+# print(next(iterator))
+# print(next(iterator))
+
+
+# Итераторы. Часть 4.
+
+# Итератор Repeater
+
+# class Repeater:
+#     def __init__(self, obj):
+#         self.obj = obj
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         return self.obj
+#
+# geek = Repeater('geek')
+#
+# print(next(geek))
+# print(next(geek))
+# print(next(geek))
+
+
+
+# Итератор BoundedRepeater
+
+# class BoundedRepeater:
+#     def __init__(self, obj, times):
+#         self.obj = obj
+#         self.times = times
+#         self.index = 1
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.index > self.times:
+#             raise StopIteration
+#         else:
+#             self.index += 1
+#             return self.obj
+#
+# geek = BoundedRepeater('geek', 3)
+#
+# print(next(geek))
+# print(next(geek))
+# print(next(geek))
+#
+# try:
+#     print(next(geek))
+# except StopIteration:
+#     print('Error')
+
+
+# Итератор Square
+
+# class Square:
+#     def __init__(self, n):
+#         self.n = n
+#         self.index = 1
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.index > self.n:
+#             raise StopIteration
+#         else:
+#             res = self.index ** 2
+#             self.index += 1
+#             return res
+#
+# squares = Square(10)
+#
+# print(list(squares))
+
+
+# Итератор Fibonacci
+
+# class Fibonacci:
+#     def __init__(self):
+#         self.curr = 1
+#         self.prev = 0
+#
+#     def __iter__(self):
+#         return self
+#
+#     def fib(self):
+#         pass
+#
+#     def __next__(self):
+#         tmp = self.prev
+#         res = self.curr
+#         self.prev = self.curr
+#         self.curr = self.curr + tmp
+#         return res
+#
+# fibonacci = Fibonacci()
+#
+# print(next(fibonacci))
+# print(next(fibonacci))
+# print(next(fibonacci))
+# print(next(fibonacci))
+
+
+# Итератор PowerOf
+
+# class PowerOf:
+#     def __init__(self, number):
+#         self.number = number
+#         self.pow = -1
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         self.pow  += 1
+#         return self.number ** self.pow
+#
+# power_of_two = PowerOf(2)
+#
+# print(next(power_of_two))
+# print(next(power_of_two))
+# print(next(power_of_two))
+# print(next(power_of_two))
+
+
+# Итератор DictItemsIterator
+
+# class DictItemsIterator:
+#     def __init__(self, data):
+#         self.data = data
+#         self.keys = [*data]
+#         self.index = -1
+#         self.stop = len(self.keys) - 1
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.index >= self.stop:
+#             raise StopIteration
+#         else:
+#             self.index += 1
+#             return self.keys[self.index], self.data[self.keys[self.index]]
+#
+#
+# data = {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49}
+#
+# pairs = DictItemsIterator(data)
+#
+# print(*pairs)
+
+
+# Итератор CardDeck
+
+# class CardDeck:
+#     def __init__(self):
+#         self.mast = ("пик", "треф", "бубен", "червей")
+#         self.val = ("2", "3", "4", "5", "6", "7", "8", "9", "10", "валет", "дама", "король", "туз")
+#         self.index = -1
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.index > 50:
+#             raise StopIteration
+#         else:
+#             self.index += 1
+#             return f'{self.val[self.index % 13]} {self.mast[(self.index // 13) % 4]}'
+#
+#
+# cards = list(CardDeck())
+#
+# print(cards)
+
+
+# Итератор Cycle
+
+# class Cycle:
+#     def __init__(self, iterable):
+#         self.data = iterable
+#         self.ite = iter(iterable)
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         try:
+#             return next(self.ite)
+#         except StopIteration:
+#             self.ite = iter(self.data)
+#             return next(self.ite)
+#
+# cycle = Cycle('be')
+#
+# print(next(cycle))
+# print(next(cycle))
+# print(next(cycle))
+# print(next(cycle))
+
+
+# Итератор RandomNumbers
+
+# from random import randint
+#
+# class RandomNumbers:
+#     def __init__(self, left, right, n):
+#         self.start = left
+#         self.stop = right
+#         self.stopper = n
+#         self.i = 1
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.i > self.stopper:
+#             raise StopIteration
+#         else:
+#             self.i += 1
+#             return randint(self.start, self.stop)
+#
+#
+# iterator = RandomNumbers(-1000, -900, 1)
+#
+# print(next(iterator) in range(-1000, -899))
+#
+# try:
+#     next(iterator)
+# except StopIteration:
+#     print('Error')
+
+
+# Итератор Alphabet 🌶️
+
+
+# class Alphabet:
+#     def __init__(self, language):
+#         self.alphabet = {'en': 'abcdefghijklmnopqrstuvwxyz', 'ru': 'абвгдежзийклмнопрстуфхцчшщъыьэюя'}[language]
+#         self.data = self.alphabet
+#         self.alphabet = iter(self.alphabet)
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         try:
+#             return next(self.alphabet)
+#         except StopIteration:
+#             self.alphabet = iter(self.data)
+#             return next(self.alphabet)
+#
+# en_alpha = Alphabet('en')
+#
+# letters = [next(en_alpha) for _ in range(28)]
+#
+# print(*letters)
+
+
+# Итератор Xrange 🌶️
+
+# class Xrange:
+#     def __init__(self, start, end, step=1.0):
+#         self.start = start - step
+#         self.stop = end - step
+#         self.step = step
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.step > 0:
+#             if self.start < self.stop:
+#                 self.start += self.step
+#                 return self.start
+#             else:
+#                 raise StopIteration
+#         else:
+#             if self.start > self.stop:
+#                 self.start += self.step
+#                 return self.start
+#             else:
+#                 raise StopIteration
+#
+#
+# evens = Xrange(0, 10, 2)
+#
+# print(*evens)
+#
+# xrange = Xrange(10, 1, -1)
+#
+# print(*xrange)
+
+
+
+# Тема урока: генераторы
+
+
+def even_numbers(begin):
+    begin += begin % 2
+    while True:
+        yield begin
+        begin += 2
