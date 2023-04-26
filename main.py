@@ -5458,12 +5458,338 @@ from datetime import date
 
 # Я в аду?
 
-srr = input()
+# srr = input()
+#
+# import re
+#
+# r = re.findall(r'7-\d{3}-\d{3}-\d{2}-\d{2}|8-\d{3}-\d{4}-\d{4}', srr)
+# print(*r, sep='\n')
 
-import re
-print(srr.split())
-for c in srr.split():
-    if re.match(r'\d-\d{3}-\d{3}-\d{2,3}-\d{2,3}', c):
-        print(c)
 
-'[0-2][0-9]:[0-5]\d'
+# Тема урока: модуль re
+
+
+# Телефонные номера
+
+# from re import search
+# import sys
+#
+# pattern = r'(?P<country_code>\d{1,3})[-\s](?P<city_code>\d{1,3})[-\s](?P<num>\d{4,10})'
+#
+# for srr in sys.stdin:
+#     reg = search(pattern, srr)
+#     print(f'Код страны: {reg.group(1)}, Код города: {reg.group(2)}, Номер: {reg.group(3)}')
+
+
+# Онлайн-школа BEEGEEK
+
+# from re import fullmatch, search, match
+# import sys
+#
+# pattern = r'_\d{1,}[a-zA-Z]*_??'
+#
+# for srr in open(0):
+#     if fullmatch(pattern, srr.strip()):
+#         print(True)
+#     else:
+#         print(False)
+
+
+# Одинаковые слоги
+
+# from re import search
+#
+# pattern = r'\b(\w+)\1{1}\b'
+#
+# for srr in open(0):
+#     if search(pattern, srr):
+#         print(srr.strip())
+
+
+# Beegeek
+
+# from re import search
+#
+# bee_pat = r'bee.*bee'
+# geek_pat = r'\bgeek\b'
+#
+# bee = 0
+# geek = 0
+#
+# for srr in open(0):
+#     if search(bee_pat, srr.strip()):
+#         bee += 1
+#     if search(geek_pat, srr.strip()):
+#         geek += 1
+#
+# print(bee)
+# print(geek)
+
+
+# Популярность
+
+# from re import search
+# res = 0
+# for srr in open(0):
+#     if search(r'^beegeek\w*', srr) and search(r'\w*beegeek$', srr):
+#         res += 3
+#     elif search(r'^beegeek\w*', srr) or search(r'\w*beegeek$', srr):
+#         res += 2
+#     elif search(r'\bbeegeek\b', srr) or search(r'\Bbeegeek\B', srr):
+#         res += 1
+#
+# print(res)
+
+
+# Уважение
+
+# import re
+#
+# srr = input()
+#
+# pattern = r'^Здравствуйте|^Доброе утро|^Добрый день|^Добрый вечер'
+#
+# if re.search(pattern, srr, re.I):
+#     print(True)
+# else:
+#     print(False)
+
+
+# Социальные сети
+
+# import re
+#
+# res = 0
+# pattern = 'beegeek'
+#
+# for srr in open(0):
+#     if re.search(pattern, srr, re.I):
+#         res +=1
+#
+# print(res)
+
+
+# Подслова
+
+# import re
+#
+# srr = input()
+# pattern = '\\B' + input() + '\\B'
+# print(pattern)
+# print(len(re.findall(pattern, srr)))
+
+
+# Слова
+
+# import re
+#
+# srr = input()
+# pattern = '\\b' + input() + '\\b'
+# print(pattern)
+# print(len(re.findall(pattern, srr)))
+
+
+# Одинаковые и разные 🍕
+
+# import re
+#
+# pattern = input()
+# pattern = fr'\b{pattern.replace("ze", "ze")}|{pattern.replace("ze", "se")}\b'
+# srr = input()
+#
+# print(pattern)
+# print(len(re.findall(pattern, srr, re.I)))
+
+
+# Одинаковые и разные ☕
+
+# import re
+#
+# pattern = input()
+# pattern = fr'\b{pattern.replace("our", "our")}\b|\b{pattern.replace("our", "or")}\b'
+# srr = input()
+# print(pattern)
+# print(re.findall(pattern, srr, re.I))
+
+
+# Функция abbreviate()
+
+# import re
+#
+# def abbreviate(phrase):
+#     pattern = r'\b[A-Z]+\b|\b\w{1}\B|\B\.?[A-Z]+\B'
+#     res = re.findall(pattern, phrase)
+#     return ''.join(res).upper()
+#
+# print(abbreviate('JS game sec'))
+
+
+# HTML 🌶️
+
+# import re
+#
+# for srr in open(0):
+#     pattern = r'<a href=\"(?P<link>.*?)\">(?P<name>.*?)</a'
+#     match = re.search(pattern, srr, re.I | re.M)
+#     if match:
+#         link = match.group('link')
+#         name = match.group('name')
+#         print(f'{link}, {name}')
+
+
+# HTML 🌶️🌶️
+#
+# import re
+#
+# res = {}
+#
+# for srr in open(0):
+#     pattern_empty_tag = r'<(?P<tag>\w+)>'
+#     match_empty_tag = re.findall(pattern_empty_tag, srr, re.I | re.M)
+#     pattern = r'<\w+\s.*?>'
+#     match_non_empty_tag = re.findall(pattern, srr, re.I | re.M)
+#
+#     if match_empty_tag:
+#
+#         res |= {k: '' for k in match_empty_tag}
+#
+#     if match_non_empty_tag:
+#         for line in match_non_empty_tag:
+#             tag = re.findall(r'<(?P<tag_attr>\w+)\s', line, re.I | re.M)
+#             patter_attr = r'\s(?P<atrr>[\w.-]+?)='
+#             match_attrs = re.findall(patter_attr, line, re.I | re.M)
+#             res[tag[0]] = ', '.join(sorted(match_attrs))
+#
+# for k, v in sorted(res.items(), key=lambda x: x[0]):
+#     print(f'{k}: {v}')
+
+
+# Функция normalize_jpeg()
+#
+# import re
+#
+# def normalize_jpeg(filename:str) -> str:
+#     pattern = r'jpe?g$'
+#     return re.sub(pattern, 'jpg', filename, flags=re.I)
+#
+# print(normalize_jpeg('stepik.jPeG'))
+# print(normalize_jpeg('mountains.JPG'))
+# print(normalize_jpeg('jpg.jPg.Jpg.JPG'))
+
+
+# Функция normalize_whitespace()
+
+# import re
+#
+# def normalize_whitespace(string:str) -> str:
+#     pattern = '\s{2,}'
+#     return re.sub(pattern, ' ', string)
+#
+# print(normalize_whitespace('AAAA                A                AAAA'))
+
+
+# Ключевые слова
+#
+# import keyword
+# import re
+#
+# def replace_key_words(srr:str) -> str:
+#     pattern = r'\b'+ r'\b|\b'.join(keyword.kwlist) + r'\b'
+#     return re.sub(pattern, '<kw>', srr, flags=re.I)
+#
+# print(replace_key_words(input()))
+
+
+# Первые буквы
+
+# import re
+#
+# pattern = r'\b(\w)(\w)([.\w]*)\b'
+# rep = '\g<2>\g<1>\g<3>'
+# srr = input()
+# res = re.sub(pattern, rep, srr)
+# print(res)
+
+
+# Умножение строк
+#
+# import re
+#
+# pattern = r'(?P<repeat>\d+)(?P<word>\(\w+\))'
+# match = re.search(pattern, srr:=input())
+#
+# while ')' in srr:
+#     repeat, word = match.group('repeat'), match.group('word')
+#     rep = int(repeat) * word[1:-1]
+#     prev = srr
+#     srr = re.subn(pattern, rep, srr, count=1)[0]
+#     match = re.search(pattern, srr)
+#
+# print(srr)
+
+
+# Повторяющиеся слова 🌶️
+#
+# import re
+#
+# pattern = r'(?P<word>\b\w+)\W+(\1)\b'
+# match = re.search(pattern, srr:=input())
+#
+# while match:
+#     srr, n = re.subn(pattern, match.group(1), srr, 1)
+#     print(srr)
+#     match = re.search(pattern, srr)
+#
+# print(srr)
+
+
+# Комментарии 🌶️🌶️
+
+# import re
+# import sys
+#
+# regex = r'\n#.*?$|' \
+#         r'\s*""".*?"""|' \
+#         r'\n? *#.*?$'
+#
+# s = sys.stdin.read()
+# print(re.sub(regex, '', s, flags=re.S | re.M))
+
+
+# Точка с запятой
+#
+# import re
+#
+# srr = 'py py; hi  hi; go-go-go'
+# print(*re.split(r'(?:\s*[,;\.]\s*)', srr))
+
+
+# Логическое выражение
+
+# import re
+#
+# srr = 'x   &   y   |   z'
+# print(*re.split(r'(?:\s*and\s*)|(?:\s*or\s*)|(?:\s*[|&]\s*)', srr), sep=', ')
+
+
+# Функция multiple_split()
+
+# import re
+#
+# def multiple_split(string:str, delimiters:list[str]) -> list:
+#     pattern = '|'.join(map(re.escape, delimiters))
+#     print(pattern)
+#     return re.split(pattern, string)
+#
+# print(multiple_split('beegeek-python.stepik', ['.', '-']))
+
+
+# Сумма чисел
+
+# import re
+#
+# regex_obj = re.compile('\d+')
+# a, b = map(int, input().split())
+# text = input()
+# res = list(regex_obj.findall(text, pos=a, endpos=b))
+# print(sum(map(int, res)))
